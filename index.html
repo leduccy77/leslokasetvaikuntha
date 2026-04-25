@@ -1,0 +1,1448 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Les 14 Lokas & Vaikuntha — Cosmologie Hindoue</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&display=swap" rel="stylesheet" />
+  <style>
+    /* ===== DESIGN TOKENS ===== */
+    :root {
+      --text-xs: clamp(0.75rem, 0.7rem + 0.25vw, 0.875rem);
+      --text-sm: clamp(0.875rem, 0.8rem + 0.35vw, 1rem);
+      --text-base: clamp(1rem, 0.95rem + 0.25vw, 1.125rem);
+      --text-lg: clamp(1.125rem, 1rem + 0.75vw, 1.5rem);
+      --text-xl: clamp(1.5rem, 1.2rem + 1.25vw, 2.25rem);
+      --text-2xl: clamp(2rem, 1.2rem + 2.5vw, 3.5rem);
+      --space-1: 0.25rem; --space-2: 0.5rem; --space-3: 0.75rem; --space-4: 1rem;
+      --space-5: 1.25rem; --space-6: 1.5rem; --space-8: 2rem; --space-10: 2.5rem;
+      --space-12: 3rem; --space-16: 4rem;
+      --radius-sm: 0.375rem; --radius-md: 0.5rem; --radius-lg: 0.75rem;
+      --radius-xl: 1.25rem; --radius-full: 9999px;
+      --transition: 220ms cubic-bezier(0.16, 1, 0.3, 1);
+      --font-display: 'Cinzel', 'Georgia', serif;
+      --font-body: 'Crimson Pro', 'Georgia', serif;
+    }
+    :root, [data-theme="dark"] {
+      --color-bg: #09070f; --color-surface: #100e1a; --color-surface-2: #16132a;
+      --color-surface-3: #1d1a34; --color-border: rgba(180,150,255,0.12);
+      --color-divider: rgba(180,150,255,0.07); --color-text: #e8e4f5;
+      --color-text-muted: #9d93c0; --color-text-faint: #5f5880;
+      --shadow-sm: 0 1px 2px rgba(0,0,0,.4); --shadow-md: 0 4px 16px rgba(0,0,0,.5);
+      --shadow-lg: 0 12px 48px rgba(0,0,0,.7);
+      --glow-gold: 0 0 28px rgba(255,215,0,.35); --glow-white: 0 0 32px rgba(255,255,255,.2);
+      --glow-violet: 0 0 24px rgba(176,122,255,.3); --glow-earth: 0 0 16px rgba(74,124,89,.35);
+      --glow-under: 0 0 24px rgba(155,35,53,.3);
+    }
+    [data-theme="light"] {
+      --color-bg: #f5f0e8; --color-surface: #faf7f0; --color-surface-2: #fff;
+      --color-surface-3: #f0eadd; --color-border: rgba(100,70,30,.15);
+      --color-divider: rgba(100,70,30,.08); --color-text: #2a1f0e;
+      --color-text-muted: #6b5338; --color-text-faint: #b09870;
+      --shadow-sm: 0 1px 2px rgba(0,0,0,.08); --shadow-md: 0 4px 16px rgba(0,0,0,.1);
+      --shadow-lg: 0 12px 48px rgba(0,0,0,.15);
+      --glow-gold: 0 0 20px rgba(200,150,0,.2); --glow-white: 0 0 24px rgba(220,200,255,.3);
+      --glow-violet: 0 0 20px rgba(120,80,200,.2); --glow-earth: 0 0 14px rgba(60,100,70,.2);
+      --glow-under: 0 0 20px rgba(120,30,50,.2);
+    }
+    *,*::before,*::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+    body { min-height: 100dvh; font-family: var(--font-body); font-size: var(--text-base);
+      color: var(--color-text); background-color: var(--color-bg); line-height: 1.65;
+      transition: background-color .4s ease, color .4s ease; }
+    img, svg { display: block; max-width: 100%; }
+    button { cursor: pointer; background: none; border: none; color: inherit; font: inherit; }
+
+    /* ===== NAV TABS ===== */
+    .nav-tabs {
+      display: flex; justify-content: center; gap: var(--space-2);
+      padding: var(--space-4) var(--space-6); flex-wrap: wrap;
+      border-bottom: 1px solid var(--color-border);
+      position: sticky; top: 56px; z-index: 90;
+      background: color-mix(in oklab, var(--color-bg) 90%, transparent);
+      backdrop-filter: blur(10px);
+    }
+    .tab-btn {
+      padding: var(--space-2) var(--space-5); border-radius: var(--radius-full);
+      border: 1px solid var(--color-border); font-family: var(--font-display);
+      font-size: var(--text-xs); letter-spacing: .12em; text-transform: uppercase;
+      color: var(--color-text-muted); transition: all var(--transition);
+    }
+    .tab-btn:hover { border-color: var(--color-text-muted); color: var(--color-text); }
+    .tab-btn.active { background: var(--color-surface-2); color: var(--color-text); border-color: rgba(176,122,255,.5); }
+
+    /* ===== TAB PANELS ===== */
+    .tab-panel { display: none; }
+    .tab-panel.active { display: block; }
+
+    /* ===== LAYOUT ===== */
+    .page-wrapper { max-width: 1300px; margin: 0 auto; padding: var(--space-8) var(--space-6); }
+
+    /* ===== HEADER ===== */
+    header {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: var(--space-4) var(--space-6); border-bottom: 1px solid var(--color-border);
+      position: sticky; top: 0; z-index: 100;
+      background: color-mix(in oklab, var(--color-bg) 85%, transparent);
+      backdrop-filter: blur(12px);
+    }
+    .header-logo {
+      display: flex; align-items: center; gap: var(--space-3);
+      font-family: var(--font-display); font-size: var(--text-sm);
+      letter-spacing: .12em; text-transform: uppercase; color: var(--color-text-muted);
+    }
+    .btn-icon {
+      width: 38px; height: 38px; border-radius: var(--radius-full);
+      border: 1px solid var(--color-border); display: flex; align-items: center; justify-content: center;
+      color: var(--color-text-muted); transition: color var(--transition), border-color var(--transition), background var(--transition);
+    }
+    .btn-icon:hover { color: var(--color-text); border-color: var(--color-text-muted); background: var(--color-surface); }
+
+    /* ===== HERO ===== */
+    .hero { text-align: center; padding: var(--space-16) var(--space-6) var(--space-10); }
+    .hero-kicker { font-family: var(--font-display); font-size: var(--text-xs); letter-spacing: .25em;
+      text-transform: uppercase; color: var(--color-text-faint); margin-bottom: var(--space-4); }
+    .hero-title { font-family: var(--font-display); font-size: var(--text-2xl); font-weight: 700;
+      line-height: 1.1; background: linear-gradient(135deg,#ffd700 0%,#b07aff 50%,#5b4adf 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+      margin-bottom: var(--space-4); }
+    [data-theme="light"] .hero-title { background: linear-gradient(135deg,#c8870a 0%,#7040c0 50%,#2a1f8a 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .hero-sub { max-width: 56ch; margin: 0 auto; color: var(--color-text-muted);
+      font-size: var(--text-lg); font-style: italic; line-height: 1.6; }
+    .hero-instruction { margin-top: var(--space-6); font-size: var(--text-sm); color: var(--color-text-faint);
+      display: flex; align-items: center; justify-content: center; gap: var(--space-2); }
+    .pulse-dot { width: 8px; height: 8px; border-radius: 50%; background: #b07aff;
+      animation: pulse-dot 2s infinite; }
+    @keyframes pulse-dot { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.4;transform:scale(.6)} }
+    .chakra-row { display: flex; align-items: center; gap: var(--space-2); justify-content: center;
+      margin-top: var(--space-4); flex-wrap: wrap; }
+    .chakra-chip { font-size: var(--text-xs); padding: 2px var(--space-3); border-radius: var(--radius-full);
+      border: 1px solid var(--color-border); color: var(--color-text-faint); cursor: pointer;
+      transition: all var(--transition); white-space: nowrap; }
+    .chakra-chip.upper { border-color: rgba(176,122,255,.3); color: #b07aff; }
+    .chakra-chip.earth-c { border-color: rgba(74,124,89,.4); color: #4a7c59; }
+    .chakra-chip.lower { border-color: rgba(155,35,53,.3); color: #9b2335; }
+    .chakra-chip.vaikuntha-c { border-color: rgba(255,220,120,.5); color: #ffd700;
+      background: rgba(255,215,0,.05); }
+
+    /* ===== VAIKUNTHA CARD (special) ===== */
+    .vaikuntha-banner {
+      position: relative; border-radius: var(--radius-xl);
+      border: 1px solid rgba(255,215,0,.5);
+      background: linear-gradient(135deg, rgba(255,215,0,.12) 0%, rgba(255,180,0,.05) 50%, var(--color-surface) 100%);
+      padding: var(--space-6) var(--space-8); margin-bottom: var(--space-6);
+      cursor: pointer; text-align: center; overflow: hidden;
+      transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition);
+      box-shadow: var(--glow-gold);
+    }
+    .vaikuntha-banner::before {
+      content: ''; position: absolute; inset: 0;
+      background: radial-gradient(ellipse at 50% 0%, rgba(255,215,0,.18) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .vaikuntha-banner:hover { transform: scale(1.01); border-color: rgba(255,215,0,.8);
+      box-shadow: var(--glow-gold), 0 0 60px rgba(255,215,0,.15), var(--shadow-lg); }
+    .vaikuntha-label { font-family: var(--font-display); font-size: var(--text-xs);
+      letter-spacing: .3em; text-transform: uppercase; color: rgba(255,215,0,.6);
+      margin-bottom: var(--space-3); }
+    .vaikuntha-name { font-family: var(--font-display); font-size: var(--text-xl);
+      font-weight: 700; color: #ffd700; margin-bottom: var(--space-2); letter-spacing: .05em; }
+    .vaikuntha-sub { font-size: var(--text-sm); color: var(--color-text-muted); font-style: italic; }
+    .vaikuntha-symbol { font-size: 2.5rem; margin-bottom: var(--space-3); line-height: 1; }
+    .vaikuntha-desc { max-width: 55ch; margin: var(--space-4) auto 0;
+      font-size: var(--text-sm); color: var(--color-text-muted); line-height: 1.7; }
+    .vaikuntha-separator {
+      width: 100%; display: grid; grid-template-columns: 1fr auto 1fr;
+      align-items: center; gap: var(--space-4); margin: var(--space-6) 0 var(--space-4);
+    }
+    .vaikuntha-separator-line { height: 1px; background: linear-gradient(90deg, transparent, rgba(255,215,0,.3), transparent); }
+    .vaikuntha-separator-text { font-family: var(--font-display); font-size: var(--text-xs);
+      letter-spacing: .2em; text-transform: uppercase; color: rgba(255,215,0,.5); white-space: nowrap; }
+
+    /* ===== MAIN DIAGRAM ===== */
+    .diagram-container { position: relative; }
+    .central-axis {
+      position: absolute; left: 50%; top: 0; bottom: 0; width: 2px;
+      transform: translateX(-50%);
+      background: linear-gradient(to bottom,#ffd700 0%,#b07aff 25%,#4a7c59 45%,#4a7c59 55%,#2a9d8f 65%,#9b2335 85%,#1a0010 100%);
+      opacity: .4; z-index: 0;
+    }
+    .lokas-list { display: flex; flex-direction: column; align-items: center;
+      gap: var(--space-2); position: relative; z-index: 1; }
+
+    /* Section labels */
+    .section-label { width: 100%; display: grid; grid-template-columns: 1fr auto 1fr;
+      align-items: center; gap: var(--space-4); margin: var(--space-4) 0 var(--space-2); }
+    .section-label-line { height: 1px; background: var(--color-border); }
+    .section-label-text { font-family: var(--font-display); font-size: var(--text-xs);
+      letter-spacing: .2em; text-transform: uppercase; white-space: nowrap; }
+    .section-label.upper .section-label-text { color: #b07aff; }
+    .section-label.earth-label .section-label-text { color: #4a7c59; }
+    .section-label.lower .section-label-text { color: #9b2335; }
+
+    /* Loka row */
+    .loka-row { width: 100%; display: grid;
+      grid-template-columns: 1fr minmax(220px, 320px) 1fr;
+      gap: 0 var(--space-4); align-items: center; }
+    .loka-side { display: flex; align-items: center; }
+    .loka-side.right { justify-content: flex-end; }
+
+    /* Loka card */
+    .loka-card {
+      position: relative; border-radius: var(--radius-xl); border: 1px solid var(--color-border);
+      background: var(--color-surface); padding: var(--space-4) var(--space-5);
+      cursor: pointer; transition: transform var(--transition), box-shadow var(--transition),
+        border-color var(--transition), background var(--transition);
+      text-align: center; overflow: hidden; width: 100%;
+    }
+    .loka-card:hover, .loka-card.active { transform: scale(1.03); }
+    .loka-card:focus-visible { outline: 2px solid #b07aff; outline-offset: 3px; }
+
+    .loka-card[data-tier="satya"] { border-color: rgba(255,215,0,.4);
+      background: linear-gradient(135deg,rgba(255,215,0,.08) 0%,var(--color-surface) 100%); }
+    .loka-card[data-tier="satya"]:hover,.loka-card[data-tier="satya"].active {
+      box-shadow: var(--glow-gold),var(--shadow-md); border-color: rgba(255,215,0,.7); }
+    .loka-card[data-tier="tapa"] { border-color: rgba(220,200,255,.3);
+      background: linear-gradient(135deg,rgba(220,200,255,.07) 0%,var(--color-surface) 100%); }
+    .loka-card[data-tier="tapa"]:hover,.loka-card[data-tier="tapa"].active {
+      box-shadow: var(--glow-violet),var(--shadow-md); border-color: rgba(220,200,255,.5); }
+    .loka-card[data-tier="jana"] { border-color: rgba(180,150,255,.3); }
+    .loka-card[data-tier="jana"]:hover,.loka-card[data-tier="jana"].active {
+      box-shadow: var(--glow-violet),var(--shadow-md); border-color: rgba(180,150,255,.5); }
+    .loka-card[data-tier="mahar"] { border-color: rgba(150,120,220,.3); }
+    .loka-card[data-tier="mahar"]:hover,.loka-card[data-tier="mahar"].active {
+      box-shadow: 0 0 20px rgba(150,120,220,.35),var(--shadow-md); border-color: rgba(150,120,220,.55); }
+    .loka-card[data-tier="svarga"] { border-color: rgba(100,100,200,.3); }
+    .loka-card[data-tier="svarga"]:hover,.loka-card[data-tier="svarga"].active {
+      box-shadow: 0 0 20px rgba(100,100,200,.35),var(--shadow-md); border-color: rgba(100,100,200,.55); }
+    .loka-card[data-tier="bhuvar"] { border-color: rgba(80,130,160,.3); }
+    .loka-card[data-tier="bhuvar"]:hover,.loka-card[data-tier="bhuvar"].active {
+      box-shadow: 0 0 18px rgba(80,130,160,.35),var(--shadow-md); border-color: rgba(80,130,160,.55); }
+    .loka-card[data-tier="bhur"] { border-color: rgba(74,124,89,.5);
+      background: linear-gradient(135deg,rgba(74,124,89,.1) 0%,var(--color-surface) 100%); }
+    .loka-card[data-tier="bhur"]:hover,.loka-card[data-tier="bhur"].active {
+      box-shadow: var(--glow-earth),var(--shadow-md); border-color: rgba(74,124,89,.8); }
+    .loka-card[data-tier="atala"] { border-color: rgba(42,157,143,.3); }
+    .loka-card[data-tier="atala"]:hover,.loka-card[data-tier="atala"].active {
+      box-shadow: 0 0 20px rgba(42,157,143,.3),var(--shadow-md); border-color: rgba(42,157,143,.55); }
+    .loka-card[data-tier="vitala"] { border-color: rgba(200,100,50,.3); }
+    .loka-card[data-tier="vitala"]:hover,.loka-card[data-tier="vitala"].active {
+      box-shadow: 0 0 20px rgba(200,100,50,.3),var(--shadow-md); border-color: rgba(200,100,50,.55); }
+    .loka-card[data-tier="sutala"] { border-color: rgba(200,80,80,.3); }
+    .loka-card[data-tier="sutala"]:hover,.loka-card[data-tier="sutala"].active {
+      box-shadow: 0 0 20px rgba(200,80,80,.3),var(--shadow-md); border-color: rgba(200,80,80,.55); }
+    .loka-card[data-tier="talatala"] { border-color: rgba(180,50,80,.3); }
+    .loka-card[data-tier="talatala"]:hover,.loka-card[data-tier="talatala"].active {
+      box-shadow: 0 0 20px rgba(180,50,80,.3),var(--shadow-md); border-color: rgba(180,50,80,.55); }
+    .loka-card[data-tier="mahatala"] { border-color: rgba(155,35,80,.3); }
+    .loka-card[data-tier="mahatala"]:hover,.loka-card[data-tier="mahatala"].active {
+      box-shadow: 0 0 20px rgba(155,35,80,.3),var(--shadow-md); border-color: rgba(155,35,80,.55); }
+    .loka-card[data-tier="rasatala"] { border-color: rgba(130,20,50,.3); }
+    .loka-card[data-tier="rasatala"]:hover,.loka-card[data-tier="rasatala"].active {
+      box-shadow: 0 0 20px rgba(130,20,50,.3),var(--shadow-md); border-color: rgba(130,20,50,.55); }
+    .loka-card[data-tier="patala"] { border-color: rgba(100,10,30,.5);
+      background: linear-gradient(135deg,rgba(100,10,30,.12) 0%,var(--color-surface) 100%); }
+    .loka-card[data-tier="patala"]:hover,.loka-card[data-tier="patala"].active {
+      box-shadow: var(--glow-under),var(--shadow-md); border-color: rgba(100,10,30,.8); }
+
+    .loka-number { font-family: var(--font-display); font-size: var(--text-xs);
+      letter-spacing: .15em; color: var(--color-text-faint); margin-bottom: var(--space-1); }
+    .loka-name { font-family: var(--font-display); font-size: var(--text-sm); font-weight: 600;
+      letter-spacing: .05em; line-height: 1.2; margin-bottom: var(--space-1); }
+    .loka-subtitle { font-size: var(--text-xs); color: var(--color-text-muted); font-style: italic; }
+    .loka-symbol { font-size: 1.4rem; margin-bottom: var(--space-2); line-height: 1; }
+    .side-info { font-size: var(--text-xs); color: var(--color-text-faint); font-style: italic;
+      line-height: 1.5; max-width: 18ch; }
+    .loka-side.left .side-info { text-align: right; }
+    .loka-side.right .side-info { text-align: left; }
+    .connector { height: 1px; background: var(--color-border); flex: 1; max-width: 40px; opacity: .6; }
+
+    /* ===== DETAIL PANEL ===== */
+    .detail-overlay { display: none; position: fixed; inset: 0; z-index: 200;
+      background: rgba(0,0,0,.65); backdrop-filter: blur(6px); animation: fade-in .2s ease; }
+    .detail-overlay.open { display: flex; align-items: center; justify-content: center; padding: var(--space-6); }
+    @keyframes fade-in { from{opacity:0} to{opacity:1} }
+    .detail-panel { background: var(--color-surface-2); border: 1px solid var(--color-border);
+      border-radius: var(--radius-xl); max-width: 720px; width: 100%; max-height: 88vh;
+      overflow-y: auto; box-shadow: var(--shadow-lg);
+      animation: slide-up .25s cubic-bezier(.16,1,.3,1); position: relative; }
+    @keyframes slide-up { from{opacity:0;transform:translateY(24px) scale(.97)} to{opacity:1;transform:none} }
+    .detail-header { padding: var(--space-6) var(--space-8) var(--space-5);
+      border-bottom: 1px solid var(--color-divider); display: flex; align-items: flex-start;
+      justify-content: space-between; gap: var(--space-4);
+      position: sticky; top: 0; background: var(--color-surface-2); z-index: 10;
+      border-radius: var(--radius-xl) var(--radius-xl) 0 0; }
+    .detail-header-left { flex: 1; }
+    .detail-loka-num { font-family: var(--font-display); font-size: var(--text-xs);
+      letter-spacing: .2em; text-transform: uppercase; color: var(--color-text-faint); margin-bottom: var(--space-2); }
+    .detail-loka-name { font-family: var(--font-display); font-size: var(--text-xl);
+      font-weight: 700; line-height: 1.1; margin-bottom: var(--space-1); }
+    .detail-loka-alt { font-size: var(--text-sm); color: var(--color-text-muted); font-style: italic; }
+    .detail-symbol-large { font-size: 3rem; line-height: 1; flex-shrink: 0; }
+    .detail-close { width: 36px; height: 36px; border-radius: var(--radius-full);
+      border: 1px solid var(--color-border); display: flex; align-items: center; justify-content: center;
+      color: var(--color-text-muted); flex-shrink: 0; transition: all var(--transition); }
+    .detail-close:hover { color: var(--color-text); background: var(--color-surface-3); }
+    .detail-body { padding: var(--space-6) var(--space-8); display: flex; flex-direction: column; gap: var(--space-6); }
+    .detail-section { display: flex; flex-direction: column; gap: var(--space-3); }
+    .detail-section-label { font-family: var(--font-display); font-size: var(--text-xs);
+      letter-spacing: .18em; text-transform: uppercase; color: var(--color-text-faint);
+      display: flex; align-items: center; gap: var(--space-2); }
+    .detail-section-label::after { content: ''; flex: 1; height: 1px; background: var(--color-divider); }
+    .detail-section-content { font-size: var(--text-base); line-height: 1.75; color: var(--color-text); }
+    .tag-list { display: flex; flex-wrap: wrap; gap: var(--space-2); }
+    .tag { display: inline-flex; align-items: center; padding: var(--space-1) var(--space-3);
+      border-radius: var(--radius-full); background: var(--color-surface-3);
+      border: 1px solid var(--color-border); font-size: var(--text-xs);
+      color: var(--color-text-muted); font-style: italic; }
+    .purana-refs { display: flex; flex-direction: column; gap: var(--space-2); }
+    .purana-ref { display: flex; align-items: baseline; gap: var(--space-2); font-size: var(--text-sm); }
+    .purana-ref-title { font-family: var(--font-display); font-size: var(--text-xs);
+      color: var(--color-text-faint); min-width: 150px; flex-shrink: 0; }
+    .purana-ref-text { color: var(--color-text-muted); font-style: italic; font-size: var(--text-sm); }
+    .consciousness-bar { display: flex; align-items: center; gap: var(--space-3); margin-top: var(--space-1); }
+    .consciousness-track { flex: 1; height: 6px; border-radius: var(--radius-full);
+      background: var(--color-surface-3); overflow: hidden; }
+    .consciousness-fill { height: 100%; border-radius: var(--radius-full);
+      transition: width .6s cubic-bezier(.16,1,.3,1); }
+    .consciousness-label { font-size: var(--text-xs); color: var(--color-text-faint); min-width: 60px; text-align: right; }
+
+    /* Theosophical badge in detail panel */
+    .theo-badge { display: inline-flex; align-items: center; gap: var(--space-2);
+      padding: var(--space-2) var(--space-4); border-radius: var(--radius-full);
+      font-size: var(--text-xs); border: 1px solid; font-style: italic; }
+
+    /* Detail color accents */
+    .detail-panel[data-tier="vaikuntha"] { border-color: rgba(255,215,0,.4); }
+    .detail-panel[data-tier="vaikuntha"] .detail-loka-name { color: #ffd700; }
+    .detail-panel[data-tier="satya"] { border-color: rgba(255,215,0,.25); }
+    .detail-panel[data-tier="satya"] .detail-loka-name { color: #ffd700; }
+    .detail-panel[data-tier="tapa"] .detail-loka-name { color: #d4b8ff; }
+    .detail-panel[data-tier="jana"] .detail-loka-name { color: #b07aff; }
+    .detail-panel[data-tier="mahar"] .detail-loka-name { color: #9a70e0; }
+    .detail-panel[data-tier="svarga"] .detail-loka-name { color: #7070d0; }
+    .detail-panel[data-tier="bhuvar"] .detail-loka-name { color: #5590b0; }
+    .detail-panel[data-tier="bhur"] .detail-loka-name { color: #4a7c59; }
+    .detail-panel[data-tier="atala"] .detail-loka-name { color: #2a9d8f; }
+    .detail-panel[data-tier="vitala"] .detail-loka-name { color: #c86432; }
+    .detail-panel[data-tier="sutala"] .detail-loka-name { color: #d05050; }
+    .detail-panel[data-tier="talatala"] .detail-loka-name { color: #b43050; }
+    .detail-panel[data-tier="mahatala"] .detail-loka-name { color: #9b2335; }
+    .detail-panel[data-tier="rasatala"] .detail-loka-name { color: #822020; }
+    .detail-panel[data-tier="patala"] .detail-loka-name { color: #ff6680; }
+
+    /* ===== THEOSOPHICAL TIMELINE ===== */
+    .theo-section { padding: var(--space-8) 0; }
+    .section-heading { font-family: var(--font-display); font-size: var(--text-xl); font-weight: 600;
+      text-align: center; margin-bottom: var(--space-3); }
+    .section-intro { text-align: center; color: var(--color-text-muted); font-style: italic;
+      max-width: 60ch; margin: 0 auto var(--space-10); line-height: 1.7; }
+
+    .theo-grid {
+      display: grid;
+      grid-template-columns: minmax(140px,180px) repeat(5, 1fr);
+      gap: 0;
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+    }
+    .theo-col-header {
+      padding: var(--space-4) var(--space-3);
+      text-align: center;
+      font-family: var(--font-display);
+      font-size: var(--text-xs);
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      border-bottom: 1px solid var(--color-border);
+      background: var(--color-surface);
+    }
+    .theo-col-header.loka-col { background: var(--color-surface-2); border-right: 1px solid var(--color-border); }
+    .theo-row {
+      display: contents;
+    }
+    .theo-cell {
+      padding: var(--space-3) var(--space-3);
+      border-bottom: 1px solid var(--color-divider);
+      font-size: var(--text-xs);
+      display: flex; align-items: center; justify-content: center;
+      text-align: center; line-height: 1.4;
+      min-height: 54px;
+    }
+    .theo-cell.loka-cell {
+      background: var(--color-surface-2);
+      border-right: 1px solid var(--color-border);
+      font-family: var(--font-display);
+      font-weight: 600;
+      letter-spacing: .06em;
+      justify-content: flex-start;
+      padding-left: var(--space-4);
+      cursor: pointer;
+      transition: background var(--transition);
+    }
+    .theo-cell.loka-cell:hover { background: var(--color-surface-3); }
+    .theo-cell.filled {
+      font-style: italic;
+      color: var(--color-text-muted);
+    }
+    .theo-cell.filled.highlight { font-weight: 600; font-style: normal; color: var(--color-text); }
+    .theo-cell.empty { color: var(--color-text-faint); font-size: .65rem; }
+
+    /* Color stripes per plane */
+    .plane-atmic { background: rgba(255,215,0,.06); }
+    .plane-bouddhique { background: rgba(176,122,255,.06); }
+    .plane-mental { background: rgba(80,120,200,.06); }
+    .plane-astral { background: rgba(42,157,143,.06); }
+    .plane-physique { background: rgba(74,124,89,.07); }
+    .plane-infraphysique { background: rgba(155,35,53,.06); }
+
+    /* Legend */
+    .theo-legend {
+      display: flex; flex-wrap: wrap; gap: var(--space-4); margin-top: var(--space-6);
+      justify-content: center;
+    }
+    .theo-legend-item {
+      display: flex; align-items: center; gap: var(--space-2);
+      font-size: var(--text-xs); color: var(--color-text-muted);
+    }
+    .theo-legend-dot { width: 10px; height: 10px; border-radius: 2px; flex-shrink: 0; }
+
+    /* Chakra correspondences */
+    .chakra-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: var(--space-4); margin-top: var(--space-8);
+    }
+    .chakra-card {
+      border: 1px solid var(--color-border); border-radius: var(--radius-lg);
+      padding: var(--space-4); background: var(--color-surface);
+    }
+    .chakra-card-header { display: flex; align-items: center; gap: var(--space-3); margin-bottom: var(--space-3); }
+    .chakra-dot { width: 16px; height: 16px; border-radius: 50%; flex-shrink: 0; }
+    .chakra-name { font-family: var(--font-display); font-size: var(--text-xs);
+      font-weight: 600; letter-spacing: .08em; }
+    .chakra-desc { font-size: var(--text-xs); color: var(--color-text-muted); line-height: 1.5; }
+
+    /* ===== COSMIC EGG ===== */
+    .egg-section { padding: var(--space-8) 0; }
+    .egg-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-8);
+      align-items: start;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .egg-svg-wrapper {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .egg-svg-wrapper svg { width: 100%; max-width: 440px; height: auto; }
+    .egg-legend-panel {
+      display: flex; flex-direction: column; gap: var(--space-4);
+      padding-top: var(--space-4);
+    }
+    .egg-legend-item {
+      display: flex; align-items: flex-start; gap: var(--space-3);
+      padding: var(--space-3); border-radius: var(--radius-md);
+      border: 1px solid var(--color-border); background: var(--color-surface);
+      cursor: pointer; transition: background var(--transition), border-color var(--transition);
+    }
+    .egg-legend-item:hover { background: var(--color-surface-2); }
+    .egg-legend-color { width: 14px; height: 14px; border-radius: 3px; flex-shrink: 0; margin-top: 2px; }
+    .egg-legend-title { font-family: var(--font-display); font-size: var(--text-xs); font-weight: 600;
+      letter-spacing: .06em; margin-bottom: var(--space-1); }
+    .egg-legend-desc { font-size: var(--text-xs); color: var(--color-text-muted); line-height: 1.5; font-style: italic; }
+    .egg-caption { font-size: var(--text-xs); color: var(--color-text-faint); text-align: center;
+      font-style: italic; margin-top: var(--space-4); line-height: 1.6; }
+
+    /* Hoverable SVG zones */
+    .egg-zone { cursor: pointer; transition: opacity .2s; }
+    .egg-zone:hover { opacity: .85; }
+
+    /* ===== FOOTER ===== */
+    footer { margin-top: var(--space-16); padding: var(--space-8) var(--space-6);
+      border-top: 1px solid var(--color-border); text-align: center;
+      color: var(--color-text-faint); font-size: var(--text-xs); font-style: italic; line-height: 1.8; }
+
+    /* ===== STARFIELD ===== */
+    .starfield { position: fixed; inset: 0; pointer-events: none; z-index: -1; overflow: hidden; }
+    .star { position: absolute; width: 1px; height: 1px; background: white; border-radius: 50%;
+      animation: twinkle var(--dur,3s) ease-in-out infinite var(--delay,0s); }
+    @keyframes twinkle { 0%,100%{opacity:.1} 50%{opacity:.7} }
+    [data-theme="light"] .starfield { display: none; }
+
+    /* ===== RESPONSIVE ===== */
+    @media(max-width:900px) {
+      .egg-container { grid-template-columns: 1fr; }
+      .egg-svg-wrapper svg { max-width: 340px; }
+      .theo-grid { grid-template-columns: minmax(110px,140px) repeat(5,1fr); font-size:.7rem; }
+    }
+    @media(max-width:700px) {
+      .loka-row { grid-template-columns: 1fr; gap: var(--space-1); }
+      .loka-side { display: none; }
+      .detail-body { padding: var(--space-4) var(--space-5); }
+      .detail-header { padding: var(--space-4) var(--space-5); }
+      .detail-loka-name { font-size: var(--text-lg); }
+      .purana-ref { flex-direction: column; gap: var(--space-1); }
+      .purana-ref-title { min-width: unset; }
+      .theo-grid { display: flex; flex-direction: column; }
+      .theo-col-header { display: none; }
+      .theo-cell.loka-cell { border-right: none; border-bottom: 1px solid var(--color-border);
+        font-size: var(--text-sm); background: var(--color-surface-3); min-height: auto; padding: var(--space-2) var(--space-3); }
+      .theo-cell:not(.loka-cell) { display: none; }
+    }
+    @media(max-width:480px) {
+      .hero { padding: var(--space-10) var(--space-4) var(--space-8); }
+      .page-wrapper { padding: var(--space-4) var(--space-4); }
+    }
+  </style>
+</head>
+<body>
+
+<div class="starfield" id="starfield" aria-hidden="true"></div>
+
+<!-- HEADER -->
+<header>
+  <div class="header-logo">
+    <svg width="28" height="28" viewBox="0 0 28 28" fill="none" aria-label="Om" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="14" cy="14" r="13" stroke="currentColor" stroke-width="1.2" opacity="0.4"/>
+      <path d="M8 17 C8 13,11 11,14 12 C17 13,18 16,16 18 C14 20,11 19,10 17" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+      <path d="M14 12 C16 10,19 10,20 12 C21 14,19 16,17 15" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+      <path d="M11 21 Q14 23,17 21" stroke="currentColor" stroke-width="1.2" fill="none" stroke-linecap="round"/>
+      <circle cx="16" cy="8" r="1" fill="currentColor" opacity="0.7"/>
+    </svg>
+    <span>Cosmologie Hindoue</span>
+  </div>
+  <div>
+    <button class="btn-icon" data-theme-toggle aria-label="Basculer le thème">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+      </svg>
+    </button>
+  </div>
+</header>
+
+<!-- NAV TABS -->
+<nav class="nav-tabs" role="tablist">
+  <button class="tab-btn active" data-tab="diagram" role="tab">Carte des Lokas</button>
+  <button class="tab-btn" data-tab="egg" role="tab">Œuf Cosmique</button>
+  <button class="tab-btn" data-tab="theo" role="tab">Parallèles Théosophiques</button>
+</nav>
+
+<main class="page-wrapper">
+
+  <!-- HERO -->
+  <section class="hero">
+    <p class="hero-kicker">Brahmanda Purana · Vishnu Purana · Bhagavata Purana</p>
+    <h1 class="hero-title">Les 14 Lokas & Vaikunṭha</h1>
+    <p class="hero-sub">La carte verticale de l'univers hindou — quatorze plans d'existence, de Vaikunṭha (au-delà du manifesté) jusqu'à Pātāla dans les abysses cosmiques.</p>
+    <div class="hero-instruction">
+      <div class="pulse-dot"></div>
+      <span>Cliquez sur chaque loka pour explorer descriptions, habitants et références aux Purāṇas</span>
+    </div>
+    <div class="chakra-row">
+      <span class="chakra-chip vaikuntha-c">✦ Vaikunṭha — Au-delà du manifesté</span>
+      <span class="chakra-chip upper">↑ 7 Lokas supérieurs</span>
+      <span class="chakra-chip earth-c">◉ Terre</span>
+      <span class="chakra-chip lower">↓ 7 Patalas</span>
+    </div>
+  </section>
+
+  <!-- ===================== TAB 1 : CARTE DES LOKAS ===================== -->
+  <div class="tab-panel active" id="tab-diagram">
+
+    <!-- VAIKUNTHA BANNER -->
+    <button class="vaikuntha-banner" id="vaikuntha-btn" aria-label="Ouvrir les détails de Vaikuntha">
+      <div class="vaikuntha-label">✦ Au-delà des 14 Lokas · Plan spirituel éternel</div>
+      <div class="vaikuntha-symbol">🪷</div>
+      <div class="vaikuntha-name">Vaikunṭha</div>
+      <div class="vaikuntha-sub">Viṣṇuloka · Parama Padham · Nitya Vibhūti</div>
+      <div class="vaikuntha-desc">Demeure éternelle de Viṣṇu et Lakṣmī, au-dessus des 14 lokas — plan transcendant la création et la dissolution cosmique, inaccessible à Brahma lui-même.</div>
+    </button>
+
+    <div class="vaikuntha-separator">
+      <div class="vaikuntha-separator-line"></div>
+      <div class="vaikuntha-separator-text">↓ Brahmāṇḍa manifesté ↓</div>
+      <div class="vaikuntha-separator-line"></div>
+    </div>
+
+    <!-- LOKAS DIAGRAM -->
+    <div class="diagram-container">
+      <div class="central-axis"></div>
+      <div class="lokas-list" id="lokas-list"></div>
+    </div>
+
+  </div><!-- /tab-diagram -->
+
+  <!-- ===================== TAB 2 : ŒUF COSMIQUE ===================== -->
+  <div class="tab-panel" id="tab-egg">
+    <section class="egg-section">
+      <h2 class="section-heading">Brahmāṇḍa — L'Œuf Cosmique</h2>
+      <p class="section-intro">Le Brahmāṇḍa (« œuf de Brahma ») est la forme que l'univers hindou revêt : un œuf d'or primordial, Hiraṇyagarbha, dans lequel tous les 14 lokas sont empilés verticalement le long de l'axe du mont Meru. Cliquez sur chaque zone pour explorer.</p>
+
+      <div class="egg-container">
+        <div class="egg-svg-wrapper">
+          <svg viewBox="0 0 440 720" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Œuf cosmique Brahmanda avec les 14 lokas">
+            <defs>
+              <radialGradient id="egg-glow" cx="50%" cy="40%" r="55%">
+                <stop offset="0%" stop-color="#ffd700" stop-opacity="0.08"/>
+                <stop offset="100%" stop-color="#09070f" stop-opacity="0"/>
+              </radialGradient>
+              <filter id="glow-filter">
+                <feGaussianBlur stdDeviation="3" result="blur"/>
+                <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+              </filter>
+              <!-- Shell clip -->
+              <clipPath id="egg-clip">
+                <ellipse cx="220" cy="340" rx="175" ry="310"/>
+              </clipPath>
+            </defs>
+
+            <!-- Outer shell glow -->
+            <ellipse cx="220" cy="340" rx="190" ry="325" fill="url(#egg-glow)"/>
+
+            <!-- Egg shell -->
+            <ellipse cx="220" cy="340" rx="178" ry="313" fill="none" stroke="#ffd700" stroke-width="1.5" stroke-dasharray="4 3" opacity="0.5"/>
+            <ellipse cx="220" cy="340" rx="175" ry="310" fill="none" stroke="#ffd700" stroke-width="0.5" opacity="0.3"/>
+
+            <!-- ===== ZONES (clipped to egg) ===== -->
+            <g clip-path="url(#egg-clip)">
+
+              <!-- Background -->
+              <rect x="45" y="30" width="350" height="620" fill="#09070f"/>
+
+              <!-- VAIKUNTHA hint (above egg) -->
+
+              <!-- Zone 1: Satya-Loka -->
+              <rect x="45" y="30" width="350" height="62" fill="rgba(255,215,0,0.13)" class="egg-zone" data-zone="satya" onclick="openDetailById('satya')">
+                <title>Satya-Loka</title>
+              </rect>
+              <line x1="45" y1="92" x2="395" y2="92" stroke="#ffd700" stroke-width="0.5" opacity="0.4"/>
+
+              <!-- Zone 2: Tapa-Loka -->
+              <rect x="45" y="92" width="350" height="52" fill="rgba(220,200,255,0.09)" class="egg-zone" data-zone="tapa" onclick="openDetailById('tapa')"/>
+              <line x1="45" y1="144" x2="395" y2="144" stroke="#c8b0ff" stroke-width="0.5" opacity="0.3"/>
+
+              <!-- Zone 3: Jana-Loka -->
+              <rect x="45" y="144" width="350" height="48" fill="rgba(180,140,255,0.08)" class="egg-zone" data-zone="jana" onclick="openDetailById('jana')"/>
+              <line x1="45" y1="192" x2="395" y2="192" stroke="#b07aff" stroke-width="0.5" opacity="0.3"/>
+
+              <!-- Zone 4: Mahar-Loka -->
+              <rect x="45" y="192" width="350" height="44" fill="rgba(130,100,200,0.08)" class="egg-zone" data-zone="mahar" onclick="openDetailById('mahar')"/>
+              <line x1="45" y1="236" x2="395" y2="236" stroke="#9a70e0" stroke-width="0.5" opacity="0.3"/>
+
+              <!-- Zone 5: Svarga-Loka -->
+              <rect x="45" y="236" width="350" height="44" fill="rgba(80,90,180,0.09)" class="egg-zone" data-zone="svarga" onclick="openDetailById('svarga')"/>
+              <line x1="45" y1="280" x2="395" y2="280" stroke="#7070c0" stroke-width="0.5" opacity="0.3"/>
+
+              <!-- Zone 6: Bhuvar-Loka -->
+              <rect x="45" y="280" width="350" height="38" fill="rgba(60,100,140,0.08)" class="egg-zone" data-zone="bhuvar" onclick="openDetailById('bhuvar')"/>
+              <line x1="45" y1="318" x2="395" y2="318" stroke="#5590b0" stroke-width="0.5" opacity="0.3"/>
+
+              <!-- Zone 7: Bhur-Loka (Earth — thicker) -->
+              <rect x="45" y="318" width="350" height="52" fill="rgba(74,124,89,0.18)" class="egg-zone" data-zone="bhur" onclick="openDetailById('bhur')"/>
+              <line x1="45" y1="370" x2="395" y2="370" stroke="#4a7c59" stroke-width="1.5" opacity="0.6"/>
+
+              <!-- Zone 8: Atala -->
+              <rect x="45" y="370" width="350" height="40" fill="rgba(42,157,143,0.1)" class="egg-zone" data-zone="atala" onclick="openDetailById('atala')"/>
+              <line x1="45" y1="410" x2="395" y2="410" stroke="#2a9d8f" stroke-width="0.5" opacity="0.3"/>
+
+              <!-- Zone 9: Vitala -->
+              <rect x="45" y="410" width="350" height="38" fill="rgba(160,80,40,0.09)" class="egg-zone" data-zone="vitala" onclick="openDetailById('vitala')"/>
+              <line x1="45" y1="448" x2="395" y2="448" stroke="#c86432" stroke-width="0.5" opacity="0.3"/>
+
+              <!-- Zone 10: Sutala -->
+              <rect x="45" y="448" width="350" height="36" fill="rgba(180,70,70,0.09)" class="egg-zone" data-zone="sutala" onclick="openDetailById('sutala')"/>
+              <line x1="45" y1="484" x2="395" y2="484" stroke="#d05050" stroke-width="0.5" opacity="0.3"/>
+
+              <!-- Zone 11: Talatala -->
+              <rect x="45" y="484" width="350" height="34" fill="rgba(160,40,70,0.1)" class="egg-zone" data-zone="talatala" onclick="openDetailById('talatala')"/>
+              <line x1="45" y1="518" x2="395" y2="518" stroke="#b43050" stroke-width="0.5" opacity="0.3"/>
+
+              <!-- Zone 12: Mahatala -->
+              <rect x="45" y="518" width="350" height="34" fill="rgba(140,30,55,0.1)" class="egg-zone" data-zone="mahatala" onclick="openDetailById('mahatala')"/>
+              <line x1="45" y1="552" x2="395" y2="552" stroke="#9b2335" stroke-width="0.5" opacity="0.3"/>
+
+              <!-- Zone 13: Rasatala -->
+              <rect x="45" y="552" width="350" height="32" fill="rgba(110,15,40,0.12)" class="egg-zone" data-zone="rasatala" onclick="openDetailById('rasatala')"/>
+              <line x1="45" y1="584" x2="395" y2="584" stroke="#822020" stroke-width="0.5" opacity="0.3"/>
+
+              <!-- Zone 14: Patala -->
+              <rect x="45" y="584" width="350" height="66" fill="rgba(80,5,20,0.18)" class="egg-zone" data-zone="patala" onclick="openDetailById('patala')"/>
+
+              <!-- Mount Meru axis -->
+              <line x1="220" y1="30" x2="220" y2="640"
+                stroke="url(#meru-grad)" stroke-width="2" opacity="0.5"/>
+
+            </g>
+
+            <defs>
+              <linearGradient id="meru-grad" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#ffd700"/>
+                <stop offset="45%" stop-color="#b07aff"/>
+                <stop offset="52%" stop-color="#4a7c59"/>
+                <stop offset="70%" stop-color="#2a9d8f"/>
+                <stop offset="100%" stop-color="#1a0010"/>
+              </linearGradient>
+            </defs>
+
+            <!-- Labels inside egg -->
+            <g font-family="Cinzel, Georgia, serif" font-size="9" fill="#e8e4f5" text-anchor="middle">
+              <text x="220" y="67" fill="#ffd700" opacity="0.9">SATYA-LOKA</text>
+              <text x="220" y="122" fill="#d4b8ff" opacity="0.85">TAPA-LOKA</text>
+              <text x="220" y="172" fill="#b07aff" opacity="0.8">JANA-LOKA</text>
+              <text x="220" y="217" fill="#9a70e0" opacity="0.8">MAHAR-LOKA</text>
+              <text x="220" y="261" fill="#8080c0" opacity="0.8">SVARGA-LOKA</text>
+              <text x="220" y="301" fill="#5590b0" opacity="0.8">BHUVAR-LOKA</text>
+              <text x="220" y="347" fill="#4a7c59" font-size="10" font-weight="bold" opacity="0.95">BHŪR-LOKA · TERRE</text>
+              <text x="220" y="393" fill="#2a9d8f" opacity="0.8">ATALA</text>
+              <text x="220" y="432" fill="#c86432" opacity="0.8">VITALA</text>
+              <text x="220" y="469" fill="#d05050" opacity="0.8">SUTALA</text>
+              <text x="220" y="504" fill="#b43050" opacity="0.8">TALĀTALA</text>
+              <text x="220" y="538" fill="#9b2335" opacity="0.8">MAHĀTALA</text>
+              <text x="220" y="571" fill="#822020" opacity="0.8">RASĀTALA</text>
+              <text x="220" y="617" fill="#ff6680" opacity="0.9">PĀTĀLA</text>
+            </g>
+
+            <!-- Meru label -->
+            <text x="232" y="345" font-family="Cinzel, serif" font-size="7" fill="#ffd700" opacity="0.4" writing-mode="tb" transform="rotate(90 232 345)">MONT MERU</text>
+
+            <!-- Naraka below -->
+            <text x="220" y="670" font-family="Cinzel, serif" font-size="8" fill="#ff6680" text-anchor="middle" opacity="0.5">↓ Naraka (enfer) — en dessous</text>
+
+            <!-- Vaikuntha above -->
+            <text x="220" y="18" font-family="Cinzel, serif" font-size="8.5" fill="#ffd700" text-anchor="middle" opacity="0.85" filter="url(#glow-filter)">✦ VAIKUNṬHA — AU-DELÀ ✦</text>
+
+            <!-- Egg shell glow outline -->
+            <ellipse cx="220" cy="340" rx="178" ry="313" fill="none" stroke="#ffd700" stroke-width="0.8" opacity="0.2"/>
+          </svg>
+
+          <p class="egg-caption">
+            Brahmāṇḍa — l'œuf d'or de Brahma (Hiraṇyagarbha)<br/>
+            Le mont Meru (axe central) relie Vaikunṭha au sommet à Naraka en bas.<br/>
+            <em>Cliquez sur chaque zone pour ouvrir la fiche détaillée.</em>
+          </p>
+        </div>
+
+        <!-- Legend -->
+        <div class="egg-legend-panel">
+          <h3 style="font-family:var(--font-display);font-size:var(--text-sm);letter-spacing:.1em;text-transform:uppercase;color:var(--color-text-faint);margin-bottom:var(--space-2)">Légende des zones</h3>
+
+          <div class="egg-legend-item" onclick="openDetailById('vaikuntha')" style="border-color:rgba(255,215,0,.35);background:rgba(255,215,0,.05)">
+            <div class="egg-legend-color" style="background:linear-gradient(135deg,#fff7a0,#ffd700);box-shadow:0 0 8px rgba(255,215,0,.4)"></div>
+            <div>
+              <div class="egg-legend-title" style="color:#ffd700">✦ Vaikunṭha — hors de l'œuf</div>
+              <div class="egg-legend-desc">Au-delà de l'enveloppe du Brahmāṇḍa, à 2,62 crores de yojanas au-dessus de Satya-Loka. Demeure éternelle de Viṣṇu — transcende tous les cycles cosmiques.</div>
+            </div>
+          </div>
+
+          <div class="egg-legend-item" onclick="openDetailById('satya')">
+            <div class="egg-legend-color" style="background:#ffd700"></div>
+            <div><div class="egg-legend-title">Satya-Loka</div><div class="egg-legend-desc">Sommet de la création manifestée. Demeure de Brahma, 120M yojanas au-dessus de Dhruva.</div></div>
+          </div>
+          <div class="egg-legend-item" onclick="openDetailById('tapa')">
+            <div class="egg-legend-color" style="background:#c8b0ff"></div>
+            <div><div class="egg-legend-title">Tapa & Jana-Loka</div><div class="egg-legend-desc">Plans des ascètes divins et des fils de Brahma, indestructibles lors des dissolutions.</div></div>
+          </div>
+          <div class="egg-legend-item" onclick="openDetailById('mahar')">
+            <div class="egg-legend-color" style="background:#9a70e0"></div>
+            <div><div class="egg-legend-title">Mahar & Svarga-Loka</div><div class="egg-legend-desc">Demeure des grands rishis et du paradis d'Indra — félicité méritée et illumination.</div></div>
+          </div>
+          <div class="egg-legend-item" onclick="openDetailById('bhur')">
+            <div class="egg-legend-color" style="background:#4a7c59"></div>
+            <div><div class="egg-legend-title">Bhūr-Loka — La Terre</div><div class="egg-legend-desc">Plan central du karma et de l'action humaine. Bhu-Mandala : 500 millions de yojanas de diamètre.</div></div>
+          </div>
+          <div class="egg-legend-item" onclick="openDetailById('atala')">
+            <div class="egg-legend-color" style="background:#2a9d8f"></div>
+            <div><div class="egg-legend-title">Atala & Vitala</div><div class="egg-legend-desc">Premiers niveaux souterrains — désirs subtils et illusion dorée. Bila-svarga (cieux souterrains).</div></div>
+          </div>
+          <div class="egg-legend-item" onclick="openDetailById('sutala')">
+            <div class="egg-legend-color" style="background:#d05050"></div>
+            <div><div class="egg-legend-title">Sutala à Rasātala</div><div class="egg-legend-desc">Royaumes des Asuras, Dānavas et Nāgas — densité croissante de la matière et de l'ego.</div></div>
+          </div>
+          <div class="egg-legend-item" onclick="openDetailById('patala')">
+            <div class="egg-legend-color" style="background:#9b2335"></div>
+            <div><div class="egg-legend-title">Pātāla</div><div class="egg-legend-desc">Abîme le plus profond. Royaume de Vāsuki, illuminé par les joyaux des Nāgas. Shesha Nāga soutient la Terre depuis en dessous.</div></div>
+          </div>
+
+
+        </div>
+      </div>
+    </section>
+  </div><!-- /tab-egg -->
+
+  <!-- ===================== TAB 3 : PARALLÈLES THÉOSOPHIQUES ===================== -->
+  <div class="tab-panel" id="tab-theo">
+    <section class="theo-section">
+      <h2 class="section-heading">Parallèles Théosophiques</h2>
+      <p class="section-intro">La Théosophie (H.P. Blavatsky, A. Besant, C.W. Leadbeater) a établi des correspondances entre les lokas védiques et ses sept plans de conscience. Cette grille comparative présente les équivalences reconnues par les traditions, ainsi que les correspondances avec les <em>koshas</em> (corps subtils) et les chakras.</p>
+
+      <!-- MAIN COMPARISON TABLE -->
+      <div class="theo-grid" role="table" aria-label="Tableau comparatif Lokas et plans théosophiques">
+
+        <!-- Headers -->
+        <div class="theo-col-header loka-col" role="columnheader">Loka hindou</div>
+        <div class="theo-col-header" role="columnheader" style="background:rgba(255,215,0,.07)">Plan théosophique</div>
+        <div class="theo-col-header" role="columnheader" style="background:rgba(176,122,255,.06)">Kosha (corps subtil)</div>
+        <div class="theo-col-header" role="columnheader" style="background:rgba(80,130,200,.06)">Chakra principal</div>
+        <div class="theo-col-header" role="columnheader" style="background:rgba(42,157,143,.06)">État de conscience</div>
+        <div class="theo-col-header" role="columnheader" style="background:rgba(200,150,0,.06)">Correspondance kabbale</div>
+
+        <!-- SATYA -->
+        <div class="theo-cell loka-cell" style="border-left:3px solid #ffd700" onclick="openDetailById('satya')" role="cell">☀️ Satya-Loka</div>
+        <div class="theo-cell filled highlight plane-atmic" role="cell">Plan Atmique (Ādi)<br/><span style="font-weight:400;font-size:.65rem;opacity:.7">7ème plan théosophique</span></div>
+        <div class="theo-cell filled plane-atmic" role="cell">Ānandamaya Kosha<br/><em>Corps de béatitude</em></div>
+        <div class="theo-cell filled plane-atmic" role="cell"><span style="color:#ffd700">●</span> Sahasrāra<br/><em>Couronne</em></div>
+        <div class="theo-cell filled plane-atmic" role="cell">Samādhi · Turīyātīta<br/><em>Au-delà du 4ème état</em></div>
+        <div class="theo-cell filled plane-atmic" role="cell">Kether · Ain Soph</div>
+
+        <!-- TAPA -->
+        <div class="theo-cell loka-cell" style="border-left:3px solid #d4b8ff" onclick="openDetailById('tapa')" role="cell">🔥 Tapa-Loka</div>
+        <div class="theo-cell filled plane-atmic" role="cell">Plan Atmique / Anupadaka<br/><span style="font-weight:400;font-size:.65rem;opacity:.7">6ème–7ème plan</span></div>
+        <div class="theo-cell filled plane-atmic" role="cell">Ānandamaya Kosha<br/><em>Corps causal supérieur</em></div>
+        <div class="theo-cell filled plane-atmic" role="cell"><span style="color:#d4b8ff">●</span> Sahasrāra / Ājñā<br/><em>Transition</em></div>
+        <div class="theo-cell filled plane-atmic" role="cell">Turīya — 4ème état<br/><em>Conscience pure</em></div>
+        <div class="theo-cell filled plane-atmic" role="cell">Ḥokhmah · Bīnāh</div>
+
+        <!-- JANA -->
+        <div class="theo-cell loka-cell" style="border-left:3px solid #b07aff" onclick="openDetailById('jana')" role="cell">🌟 Jana-Loka</div>
+        <div class="theo-cell filled highlight plane-bouddhique" role="cell">Plan Bouddhique<br/><span style="font-weight:400;font-size:.65rem;opacity:.7">6ème plan théosophique</span></div>
+        <div class="theo-cell filled plane-bouddhique" role="cell">Vijñānamaya Kosha<br/><em>Corps intuitionnel</em></div>
+        <div class="theo-cell filled plane-bouddhique" role="cell"><span style="color:#b07aff">●</span> Ājñā<br/><em>3ème œil</em></div>
+        <div class="theo-cell filled plane-bouddhique" role="cell">Conscience cosmique<br/><em>God-consciousness</em></div>
+        <div class="theo-cell filled plane-bouddhique" role="cell">Ḥesed · Gevūrāh</div>
+
+        <!-- MAHAR -->
+        <div class="theo-cell loka-cell" style="border-left:3px solid #9a70e0" onclick="openDetailById('mahar')" role="cell">🌙 Mahar-Loka</div>
+        <div class="theo-cell filled plane-bouddhique" role="cell">Plan Bouddhique / Mental sup.<br/><span style="font-weight:400;font-size:.65rem;opacity:.7">5ème–6ème plan</span></div>
+        <div class="theo-cell filled plane-bouddhique" role="cell">Vijñānamaya Kosha<br/><em>Intellect pur</em></div>
+        <div class="theo-cell filled plane-bouddhique" role="cell"><span style="color:#9a70e0">●</span> Ājñā / Viśuddha<br/><em>Perception fine</em></div>
+        <div class="theo-cell filled plane-bouddhique" role="cell">Turīya — illumination<br/><em>Conscience étendue</em></div>
+        <div class="theo-cell filled plane-bouddhique" role="cell">Tiferet</div>
+
+        <!-- SVARGA -->
+        <div class="theo-cell loka-cell" style="border-left:3px solid #7070c0" onclick="openDetailById('svarga')" role="cell">⚡ Svarga-Loka</div>
+        <div class="theo-cell filled highlight plane-mental" role="cell">Plan Mental supérieur<br/><span style="font-weight:400;font-size:.65rem;opacity:.7">5ème plan théosophique</span></div>
+        <div class="theo-cell filled plane-mental" role="cell">Manomaya Kosha<br/><em>Corps mental supérieur</em></div>
+        <div class="theo-cell filled plane-mental" role="cell"><span style="color:#7070c0">●</span> Viśuddha<br/><em>Gorge</em></div>
+        <div class="theo-cell filled plane-mental" role="cell">Sushupti — Sommeil profond<br/><em>Dévas & félicité méritée</em></div>
+        <div class="theo-cell filled plane-mental" role="cell">Netzaḥ · Hod</div>
+
+        <!-- BHUVAR -->
+        <div class="theo-cell loka-cell" style="border-left:3px solid #5590b0" onclick="openDetailById('bhuvar')" role="cell">☁️ Bhuvar-Loka</div>
+        <div class="theo-cell filled highlight plane-astral" role="cell">Plan Astral supérieur<br/><span style="font-weight:400;font-size:.65rem;opacity:.7">4ème plan théosophique</span></div>
+        <div class="theo-cell filled plane-astral" role="cell">Prāṇamaya Kosha<br/><em>Corps pranique / éthérique</em></div>
+        <div class="theo-cell filled plane-astral" role="cell"><span style="color:#5590b0">●</span> Anāhata<br/><em>Cœur</em></div>
+        <div class="theo-cell filled plane-astral" role="cell">Plan astral supérieur<br/><em>Pitṛs &amp; Siddhas</em></div>
+        <div class="theo-cell filled plane-astral" role="cell">Yesod — transition</div>
+
+        <!-- BHUR -->
+        <div class="theo-cell loka-cell" style="border-left:3px solid #4a7c59;background:rgba(74,124,89,.07)" onclick="openDetailById('bhur')" role="cell">🌍 Bhūr-Loka</div>
+        <div class="theo-cell filled highlight plane-physique" style="background:rgba(74,124,89,.1)" role="cell">Plan Physique dense<br/><span style="font-weight:400;font-size:.65rem;opacity:.7">1er plan théosophique</span></div>
+        <div class="theo-cell filled plane-physique" style="background:rgba(74,124,89,.07)" role="cell">Annamaya Kosha<br/><em>Corps physique dense</em></div>
+        <div class="theo-cell filled plane-physique" style="background:rgba(74,124,89,.07)" role="cell"><span style="color:#4a7c59">●</span> Mūlādhāra<br/><em>Racine</em></div>
+        <div class="theo-cell filled plane-physique" style="background:rgba(74,124,89,.07)" role="cell">Jāgrat — éveil ordinaire<br/><em>Dualité pleine</em></div>
+        <div class="theo-cell filled plane-physique" style="background:rgba(74,124,89,.07)" role="cell">Malkut · Royaume</div>
+
+        <!-- Separator -->
+        <div class="theo-cell" style="grid-column:1/-1;background:rgba(155,35,53,.08);font-family:var(--font-display);font-size:var(--text-xs);letter-spacing:.15em;text-transform:uppercase;color:#9b2335;justify-content:center;padding:var(--space-2)" role="row">↓ Mondes souterrains (Patalas) — plans infra-physiques et sub-conscients ↓</div>
+
+        <!-- ATALA -->
+        <div class="theo-cell loka-cell" style="border-left:3px solid #2a9d8f" onclick="openDetailById('atala')" role="cell">🌊 Atala</div>
+        <div class="theo-cell filled plane-infraphysique" role="cell">Plan Astral inférieur<br/><em>Désirs non-sublimés</em></div>
+        <div class="theo-cell filled plane-infraphysique" role="cell">Kāma-rūpa<br/><em>Corps du désir</em></div>
+        <div class="theo-cell filled plane-infraphysique" role="cell"><span style="color:#2a9d8f">●</span> Svādhiṣṭhāna<br/><em>Sacré</em></div>
+        <div class="theo-cell filled plane-infraphysique" role="cell">Kāma-loka inférieur<br/><em>Désirs subtils</em></div>
+        <div class="theo-cell empty" role="cell">—</div>
+
+        <!-- VITALA -->
+        <div class="theo-cell loka-cell" style="border-left:3px solid #c86432" onclick="openDetailById('vitala')" role="cell">🔱 Vitala</div>
+        <div class="theo-cell filled plane-infraphysique" role="cell">Plan Astral dense<br/><em>Māyā / illusion</em></div>
+        <div class="theo-cell filled plane-infraphysique" role="cell">Kāma-rūpa dense<br/><em>Attachement matériel</em></div>
+        <div class="theo-cell filled plane-infraphysique" role="cell"><span style="color:#c86432">●</span> Svādhiṣṭhāna<br/><em>Force vitale</em></div>
+        <div class="theo-cell filled plane-infraphysique" role="cell">Rêve lucide lourd<br/><em>Māyā dense</em></div>
+        <div class="theo-cell empty" role="cell">—</div>
+
+        <!-- SUTALA -->
+        <div class="theo-cell loka-cell" style="border-left:3px solid #d05050" onclick="openDetailById('sutala')" role="cell">👑 Sutala</div>
+        <div class="theo-cell filled plane-infraphysique" role="cell">Plan sub-physique 1<br/><em>Bhakti paradoxale</em></div>
+        <div class="theo-cell filled plane-infraphysique" role="cell">Sub-physique supérieur</div>
+        <div class="theo-cell filled plane-infraphysique" role="cell"><span style="color:#d05050">●</span> Maṇipūra<br/><em>Plexus solaire</em></div>
+        <div class="theo-cell filled plane-infraphysique" role="cell">Dévotion matérialisée</div>
+        <div class="theo-cell empty" role="cell">—</div>
+
+        <!-- TALATALA -->
+        <div class="theo-cell loka-cell" style="border-left:3px solid #b43050" onclick="openDetailById('talatala')" role="cell">🌀 Talātala</div>
+        <div class="theo-cell filled plane-infraphysique" role="cell">Plan sub-physique 2<br/><em>Māyā totale</em></div>
+        <div class="theo-cell filled plane-infraphysique" role="cell">Illusion éthérique</div>
+        <div class="theo-cell filled plane-infraphysique" role="cell"><span style="color:#b43050">●</span> Maṇipūra bas<br/><em>Ego rigide</em></div>
+        <div class="theo-cell filled plane-infraphysique" role="cell">Illusion profonde</div>
+        <div class="theo-cell empty" role="cell">—</div>
+
+        <!-- MAHATALA -->
+        <div class="theo-cell loka-cell" style="border-left:3px solid #9b2335" onclick="openDetailById('mahatala')" role="cell">🐍 Mahātala</div>
+        <div class="theo-cell filled plane-infraphysique" role="cell">Plan sub-physique 3<br/><em>Krodha / colère</em></div>
+        <div class="theo-cell filled plane-infraphysique" role="cell">Couches subliminales</div>
+        <div class="theo-cell filled plane-infraphysique" role="cell"><span style="color:#9b2335">●</span> Mūlādhāra bas</div>
+        <div class="theo-cell filled plane-infraphysique" role="cell">Pulsions instinctives</div>
+        <div class="theo-cell empty" role="cell">—</div>
+
+        <!-- RASATALA -->
+        <div class="theo-cell loka-cell" style="border-left:3px solid #822020" onclick="openDetailById('rasatala')" role="cell">⚔️ Rasātala</div>
+        <div class="theo-cell filled plane-infraphysique" role="cell">Plan sub-physique 4<br/><em>Dveṣa / hostilité</em></div>
+        <div class="theo-cell filled plane-infraphysique" role="cell">Inconscient profond</div>
+        <div class="theo-cell filled plane-infraphysique" role="cell">En dessous de Mūlādhāra</div>
+        <div class="theo-cell filled plane-infraphysique" role="cell">Ombre collective</div>
+        <div class="theo-cell empty" role="cell">—</div>
+
+        <!-- PATALA -->
+        <div class="theo-cell loka-cell" style="border-left:3px solid #ff6680" onclick="openDetailById('patala')" role="cell">🌑 Pātāla</div>
+        <div class="theo-cell filled plane-infraphysique" role="cell">Plan sub-physique 5<br/><em>Tamas absolu</em></div>
+        <div class="theo-cell filled plane-infraphysique" role="cell">Matière la plus dense</div>
+        <div class="theo-cell filled plane-infraphysique" role="cell">Infra-racine</div>
+        <div class="theo-cell filled plane-infraphysique" role="cell">Tamas pur — graine</div>
+        <div class="theo-cell empty" role="cell">—</div>
+
+      </div><!-- /theo-grid -->
+
+      <!-- Legend -->
+      <div class="theo-legend">
+        <div class="theo-legend-item"><div class="theo-legend-dot" style="background:rgba(255,215,0,.5)"></div><span>Plan Atmique / Ādi</span></div>
+        <div class="theo-legend-item"><div class="theo-legend-dot" style="background:rgba(176,122,255,.5)"></div><span>Plan Bouddhique / Intuitionnel</span></div>
+        <div class="theo-legend-item"><div class="theo-legend-dot" style="background:rgba(80,130,200,.5)"></div><span>Plan Mental supérieur</span></div>
+        <div class="theo-legend-item"><div class="theo-legend-dot" style="background:rgba(42,157,143,.5)"></div><span>Plan Astral</span></div>
+        <div class="theo-legend-item"><div class="theo-legend-dot" style="background:rgba(74,124,89,.5)"></div><span>Plan Physique dense</span></div>
+        <div class="theo-legend-item"><div class="theo-legend-dot" style="background:rgba(155,35,53,.5)"></div><span>Plans Infra-physiques (Patalas)</span></div>
+      </div>
+
+      <!-- Chakra correspondences -->
+      <h3 style="font-family:var(--font-display);font-size:var(--text-sm);letter-spacing:.12em;text-transform:uppercase;color:var(--color-text-faint);text-align:center;margin:var(--space-12) 0 var(--space-6)">Correspondances avec les Koshas (corps subtils védiques)</h3>
+      <div class="chakra-grid">
+        <div class="chakra-card">
+          <div class="chakra-card-header">
+            <div class="chakra-dot" style="background:#ffd700"></div>
+            <div class="chakra-name">Ānandamaya Kosha</div>
+          </div>
+          <div class="chakra-desc">Corps de béatitude (ānanda). Correspond aux lokas supérieurs : Satya et Tapa. Plan théosophique Atmique. La conscience pure sans objet. Équivalent théosophique : corps causal suprême et corps atmique.</div>
+        </div>
+        <div class="chakra-card">
+          <div class="chakra-card-header">
+            <div class="chakra-dot" style="background:#b07aff"></div>
+            <div class="chakra-name">Vijñānamaya Kosha</div>
+          </div>
+          <div class="chakra-desc">Corps de la discernement (vijñāna). Correspond à Jana et Mahar-Loka. Plan théosophique Bouddhique. Intelligence intuitive pure, connaissance directe. Corps causal dans la tradition théosophique.</div>
+        </div>
+        <div class="chakra-card">
+          <div class="chakra-card-header">
+            <div class="chakra-dot" style="background:#7070c0"></div>
+            <div class="chakra-name">Manomaya Kosha</div>
+          </div>
+          <div class="chakra-desc">Corps mental (manas). Correspond à Svarga-Loka. Plan Mental théosophique supérieur. Pensées, émotions sublimées, imagination créatrice. Corps mental (manasic body) en Théosophie.</div>
+        </div>
+        <div class="chakra-card">
+          <div class="chakra-card-header">
+            <div class="chakra-dot" style="background:#5590b0"></div>
+            <div class="chakra-name">Prāṇamaya Kosha</div>
+          </div>
+          <div class="chakra-desc">Corps pranique / vital. Correspond à Bhuvar-Loka, le plan intermédiaire atmosphérique. Plan Astral supérieur en Théosophie. Corps éthérique et pranique dans le cadre blavatskyien.</div>
+        </div>
+        <div class="chakra-card">
+          <div class="chakra-card-header">
+            <div class="chakra-dot" style="background:#4a7c59"></div>
+            <div class="chakra-name">Annamaya Kosha</div>
+          </div>
+          <div class="chakra-desc">Corps physique dense (anna = nourriture). Correspond à Bhūr-Loka, la Terre. Premier plan théosophique. Corps physique dense — le seul perceptible par les sens ordinaires.</div>
+        </div>
+        <div class="chakra-card">
+          <div class="chakra-card-header">
+            <div class="chakra-dot" style="background:#9b2335"></div>
+            <div class="chakra-name">Kāma-rūpa (Patalas)</div>
+          </div>
+          <div class="chakra-desc">Corps du désir (kāma). Correspond aux Patalas — en Théosophie, ce corps survit après la mort et se désintègre au Kāma-loka. Les sept Patalas représentent les strates du désir non-sublimé et de la matière condensée.</div>
+        </div>
+      </div>
+
+      <!-- Source note -->
+      <div style="margin-top:var(--space-10);padding:var(--space-5);border-radius:var(--radius-lg);border:1px solid var(--color-border);background:var(--color-surface)">
+        <div style="font-family:var(--font-display);font-size:var(--text-xs);letter-spacing:.15em;text-transform:uppercase;color:var(--color-text-faint);margin-bottom:var(--space-3)">Sources des correspondances théosophiques</div>
+        <div style="font-size:var(--text-xs);color:var(--color-text-muted);line-height:1.8;font-style:italic">
+          H.P. Blavatsky — <em>La Doctrine Secrète</em> (1888) · <em>La Clef de la Théosophie</em> (1889)<br/>
+          Annie Besant — <em>Le Plan Astral</em> (1895) · <em>Les Sept Principes de l'Homme</em><br/>
+          C.W. Leadbeater — <em>Les Plans de l'Existence</em> (1900)<br/>
+          T.S. Adyar — <em>The Theosophical Review</em> : articles sur les lokas et les plans (1890–1910)<br/>
+          P.T. Srinivasa Iyengar — <em>Studies in the Puranas</em> : correspondances avec la Théosophie moderniste
+        </div>
+      </div>
+
+    </section>
+  </div><!-- /tab-theo -->
+
+</main>
+
+<footer>
+  Sources : Vishnu Purāṇa (Livre II) · Bhāgavata Purāṇa (Canto 2, 5, 8) · Brahmāṇḍa Purāṇa · Mārkaṇḍeya Purāṇa<br/>
+  Taittirīya Upaniṣad · Mahābhārata · Ṛgveda · H.P. Blavatsky, La Doctrine Secrète (1888) · A. Besant, C.W. Leadbeater
+</footer>
+
+<!-- ===== DETAIL OVERLAY ===== -->
+<div class="detail-overlay" id="detail-overlay" role="dialog" aria-modal="true" aria-labelledby="detail-name">
+  <div class="detail-panel" id="detail-panel">
+    <div class="detail-header">
+      <div class="detail-header-left">
+        <div class="detail-loka-num" id="detail-num"></div>
+        <div class="detail-loka-name" id="detail-name"></div>
+        <div class="detail-loka-alt" id="detail-alt"></div>
+      </div>
+      <div class="detail-symbol-large" id="detail-symbol"></div>
+      <button class="detail-close" id="detail-close" aria-label="Fermer">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
+      </button>
+    </div>
+    <div class="detail-body">
+      <div class="detail-section">
+        <div class="detail-section-label">Description</div>
+        <div class="detail-section-content" id="detail-desc"></div>
+      </div>
+      <div class="detail-section">
+        <div class="detail-section-label">Habitants</div>
+        <div class="tag-list" id="detail-inhabitants"></div>
+      </div>
+      <div class="detail-section">
+        <div class="detail-section-label">État de conscience</div>
+        <div class="detail-section-content" id="detail-consciousness"></div>
+        <div class="consciousness-bar">
+          <div class="consciousness-track"><div class="consciousness-fill" id="detail-consciousness-bar"></div></div>
+          <div class="consciousness-label" id="detail-consciousness-label"></div>
+        </div>
+      </div>
+      <div class="detail-section" id="detail-theo-section">
+        <div class="detail-section-label">Correspondance théosophique</div>
+        <div id="detail-theo-content"></div>
+      </div>
+      <div class="detail-section">
+        <div class="detail-section-label">Références aux Purāṇas</div>
+        <div class="purana-refs" id="detail-puranas"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+// ===== DATA =====
+const LOKAS = [
+  {
+    id:'vaikuntha', number:'00', name:'Vaikunṭha', altName:'Viṣṇuloka · Parama Padham · Nitya Vibhūti',
+    subtitle:'Demeure éternelle de Viṣṇu — au-delà du manifesté', symbol:'🪷', tier:'vaikuntha', region:'transcendent',
+    sideText:'Au-delà', theoPlane:'Au-delà des 7 plans théosophiques — Parā-Brahman',
+    theoBadgeColor:'rgba(255,215,0,0.15)', theoBadgeBorder:'rgba(255,215,0,0.4)', theoBadgeText:'#ffd700',
+    description:'Vaikunṭha (sanskrit : "sans anxiété / imperfection") est la demeure transcendante et éternelle de Viṣṇu et de son épouse Lakṣmī. Contrairement aux 14 Lokas qui constituent le Brahmāṇḍa (l\'œuf cosmique) — soumis aux cycles de création (sṛṣṭi) et dissolution (pralaya) — Vaikunṭha est la Nitya Vibhūti, le "domaine éternel" non-créé, situé à 2,62 crores de yojanas au-dessus de Satya-Loka. C\'est le Parama Padham, le "domaine suprême" selon Rāmānuja. Les sept portes en or et diamant sont gardées par six sages et deux gardiens jumeaux : Jaya et Vijaya. Le sol y est d\'or pur, illuminé par une lumière transcendante surpassant des millions de soleils. Les résidents ont une forme à quatre bras identique à celle de Viṣṇu, un teint bleuté lumineux, des yeux de lotus et des ornements de perles.',
+    inhabitants:['Viṣṇu / Nārāyaṇa (maître des lieux)','Lakṣmī (déesse de la fortune)','Garuḍa (véhicule divin de Viṣṇu)','Śeṣa Nāga (serpent millitête sur qui repose Viṣṇu)','Viśvaksena (commandant de l\'armée céleste)','Jaya et Vijaya (gardiens des portes)','Âmes libérées par bhakti (vaikuntha-vāsis)','Dévots éternels (nitya-sūris) à forme quadri-brachiale'],
+    consciousness:'Conscience de l\'union éternelle avec le Divin personnel (Viṣṇu). Accord parfait de sat-cit-ānanda (être-conscience-béatitude). Au-delà de toute désignation conceptuelle, même celle de Samādhi. Les résidents ne connaissent ni naissance ni mort, ni le temps linéaire. Prema-bhakti absolue — amour divin sans mélange ni déclin.',
+    consciousnessLevel:110, consciousnessLabel:'Para-Brahman',
+    puranas:[
+      {title:'Vishnu Purāṇa I.22 & II.8',text:'Vaikunṭha est décrit comme pur, conscient, éternel, non-né, non-décroissant, immuable — ni grossier ni subtil, au-delà des définitions matérielles.'},
+      {title:'Bhāgavata Purāṇa 2.9.10',text:'Viṣṇu révèle à Brahmā le plan de Vaikunṭha avant la création de l\'univers — il précède le Brahmāṇḍa.'},
+      {title:'Bhāgavata Purāṇa 3.15.12-15',text:'Description précise : sol d\'or, arbres exauçant les désirs, vents parfumés, musique céleste perpétuelle, dévots aux formes quadri-brachiales.'},
+      {title:'Ṛgveda IV.9.29 & X.88.25-26',text:'Allusion à la demeure suprême de Viṣṇu : "les ascètes pacifiques qui atteignent ce lieu ne reviennent plus jamais."'},
+      {title:'Rāmānuja, Śrī Bhāṣya',text:'Vaikunṭha comme Parama Padham — demeure divine impérissable, "monde éternel qui est l\'abode de Dieu lui-même."'},
+    ]
+  },
+  {
+    id:'satya',number:'01',name:'Satya-Loka',altName:'Brahma-Loka · Vaikuṇṭha suprême',
+    subtitle:'Demeure de la Vérité absolue',symbol:'☀️',tier:'satya',region:'upper',sideText:'Samādhi parfait',
+    theoPlane:'Plan Atmique (Ādi) — 7ème plan',theoBadgeColor:'rgba(255,215,0,0.1)',
+    theoBadgeBorder:'rgba(255,215,0,0.35)',theoBadgeText:'#ffd700',
+    description:'Satya-Loka, également appelée Brahma-Loka, est le royaume le plus élevé de l\'univers manifesté — le séjour de Brahma, le dieu créateur. Situé à 120 millions de yojanas au-dessus de Dhruva (l\'étoile polaire), ce plan irradie une lumière pure et une vérité immuable. Ceux qui y parviennent n\'ont plus besoin de renaître ; leur ātman est libéré du cycle du saṃsāra. Le Srimad Bhāgavatam le décrit comme positionné sur la tête de la forme universelle du Seigneur (Virāṭ-puruṣa).',
+    inhabitants:['Brahma','Sarasvatī','Âmes libérées (mukta-ātman)','Sages immortels (ṛṣi)','Êtres d\'une pureté absolue'],
+    consciousness:'Samādhi — état d\'union parfaite avec Brahman. Conscience non-duelle (advaita). Dissolution complète de l\'ego individuel. Omniscience totale. Au-delà du temps, de l\'espace et de la causalité.',
+    consciousnessLevel:100,consciousnessLabel:'Moksha',
+    puranas:[
+      {title:'Bhāgavata Purāṇa 2.2.28',text:'Brahma réside à Satya-loka, demeure de la connaissance parfaite et de l\'immortalité.'},
+      {title:'Vishnu Purāṇa II.7',text:'Positionné à 120 000 000 yojanas au-dessus de Dhruva, il transcende les cycles de dissolution.'},
+      {title:'Taittirīya Upaniṣad',text:'Les sept vyahritis culminent en Satyam — la vérité ultime, au-delà de toute désignation.'},
+      {title:'Mahābhārata, Śānti Parva',text:'Les âmes d\'une dévotion parfaite atteignent Brahma-loka et ne reviennent plus.'},
+    ]
+  },
+  {
+    id:'tapa',number:'02',name:'Tapa-Loka',altName:'Tapo-Loka',subtitle:'Demeure de la tapas suprême',
+    symbol:'🔥',tier:'tapa',region:'upper',sideText:'Ascèse divine',
+    theoPlane:'Plan Atmique / Anupadaka (6ème–7ème)',theoBadgeColor:'rgba(220,200,255,0.08)',
+    theoBadgeBorder:'rgba(220,200,255,0.3)',theoBadgeText:'#d4b8ff',
+    description:'Tapa-Loka est le domaine de l\'ascèse cosmique la plus élevée. Les Vaibhrāja devas y résident — des divinités inconsumables même par les flammes de la dissolution universelle (pralaya). Ce monde n\'est pas détruit lors du déluge cosmique partiel. À 40 millions de yojanas de Dhruva, il accueille ceux dont la tapas (austérité) a purifié leur être jusqu\'à l\'essence la plus subtile.',
+    inhabitants:['Vaibhrāja devas','Ayonija devadās (êtres non-nés)','Ascètes cosmiques','Rishis de rang transcendant'],
+    consciousness:'Conscience de la tapas — purification par le feu intérieur. Détachement absolu des sens. Contemplation ininterrompue. L\'esprit est devenu flamme pure, brûlant toute impureté karmique.',
+    consciousnessLevel:92,consciousnessLabel:'Tapas pur',
+    puranas:[
+      {title:'Vishnu Purāṇa II.7',text:'Les Vaibhrāja occupent Tapoloka, demeurant indemnes même lors du feu de dissolution.'},
+      {title:'Bhāgavata Purāṇa 2.5.39',text:'Tapo-loka est habité par ceux dont l\'austérité transcende les cycles cosmiques.'},
+      {title:'Markaṇḍeya Purāṇa',text:'Les ascètes les plus ardents montent vers Tapoloka après avoir épuisé leur karma.'},
+    ]
+  },
+  {
+    id:'jana',number:'03',name:'Jana-Loka',altName:'Jano-Loka',subtitle:'Demeure des fils de Brahma',
+    symbol:'🌟',tier:'jana',region:'upper',sideText:'Conscience divine',
+    theoPlane:'Plan Bouddhique / Intuitionnel (6ème)',theoBadgeColor:'rgba(176,122,255,0.08)',
+    theoBadgeBorder:'rgba(176,122,255,0.3)',theoBadgeText:'#b07aff',
+    description:'Jana-Loka est le royaume des Sanatkumāras — Sanaka, Sanandana, Sanātana et Sanat-kumāra —, les quatre fils mentaux de Brahma nés dans un état de connaissance parfaite. À 20 millions de yojanas de Dhruva, ce plan est dédié à la brahmavidyā et à la propagation de la sagesse védique. Lors des dissolutions partielles, Jana-loka abrite des réfugiés venant de Mahar-loka.',
+    inhabitants:['Sanatkumāras','Sanaka, Sanandana, Sanātana','Guérisseurs spirituels extraordinaires','Enseignants cosmiques'],
+    consciousness:'Conscience divine — "God consciousness". État de mysticisme avancé. Connexion directe avec la brahmavidyā. Le mental est parfaitement établi dans la contemplation de Brahman.',
+    consciousnessLevel:85,consciousnessLabel:'Brahmavidyā',
+    puranas:[
+      {title:'Vishnu Purāṇa II.7',text:'Les fils purs de Brahma — Sanandana et autres — demeurent en Jana-loka dans la dévotion perpétuelle à Vishnu.'},
+      {title:'Bhāgavata Purāṇa 5.20',text:'Jana-loka est deux fois plus loin que Mahar-loka depuis Dhruva, à ~20 millions de yojanas.'},
+      {title:'Mundaka Upaniṣad 2.2.10-11',text:'L\'ascension vers Brahmaloka passe par des plans de connaissance croissante, dont Jana-loka.'},
+    ]
+  },
+  {
+    id:'mahar',number:'04',name:'Mahar-Loka',altName:'Maharloka · Grande demeure',subtitle:'Demeure des grands sages',
+    symbol:'🌙',tier:'mahar',region:'upper',sideText:'Illumination',
+    theoPlane:'Plan Bouddhique / Mental sup. (5ème–6ème)',theoBadgeColor:'rgba(150,110,220,0.08)',
+    theoBadgeBorder:'rgba(150,110,220,0.3)',theoBadgeText:'#9a70e0',
+    description:'Mahar-Loka, à 10 millions de yojanas au-dessus de Dhruva, est l\'abode des rishis illuminés dont la longévité est égale à un kalpa entier (4,32 milliards d\'années humaines). Mārkaṇḍeya Ṛṣi — le sage légendaire qui vécut au-delà de la dissolution cosmique — y réside. Lorsque les trois mondes inférieurs sont consumés à la fin d\'un kalpa, les sages de Mahar-loka migrent vers Jana-loka.',
+    inhabitants:['Mārkaṇḍeya Ṛṣi','Grands rishis illuminés','Bhṛgu et sages de premier rang','Êtres transcendant la mort ordinaire'],
+    consciousness:'Illumination avancée — conscience stable dans le Turīya (quatrième état). Témoins des cycles cosmiques. Perception directe des vérités universelles.',
+    consciousnessLevel:77,consciousnessLabel:'Turīya',
+    puranas:[
+      {title:'Vishnu Purāṇa II.7',text:'Mahar-loka : saints dont la durée de vie est celle d\'un jour de Brahma (4,32 milliards d\'années).'},
+      {title:'Bhāgavata Purāṇa 2.5.39-40',text:'Lors de la dissolution partielle, les sages de Mahar-loka se réfugient en Jana-loka.'},
+      {title:'Mārkaṇḍeya Purāṇa',text:'Mārkaṇḍeya traverse la dissolution cosmique depuis Mahar-loka et témoigne de la création suivante.'},
+    ]
+  },
+  {
+    id:'svarga',number:'05',name:'Svarga-Loka',altName:'Svar-Loka · Swarga',subtitle:'Paradis d\'Indra',
+    symbol:'⚡',tier:'svarga',region:'upper',sideText:'Félicité méritée',
+    theoPlane:'Plan Mental supérieur (5ème)',theoBadgeColor:'rgba(100,100,200,0.08)',
+    theoBadgeBorder:'rgba(100,100,200,0.3)',theoBadgeText:'#8080c8',
+    description:'Svarga-Loka est le paradis classique du domaine d\'Indra, roi des dieux. Les 33 Koti de divinités védiques y résident. Les âmes humaines vertueuses y jouissent de l\'ambroisie (amṛta) et des plaisirs divins. Mais ce séjour est temporaire — à l\'épuisement des mérites (puṇya), l\'âme redescend.',
+    inhabitants:['Indra (roi des dieux)','33 types de devas','Vasus, Rudras, Ādityas','Apsarās, Gandharvas','Âmes méritantes en transit'],
+    consciousness:'Conscience de félicité méritée — récompense karmique. Jouissance des fruits des bonnes actions. L\'ego subsiste raffiné. La Bhagavad Gītā souligne le caractère temporaire et conditionné de ce séjour.',
+    consciousnessLevel:65,consciousnessLabel:'Puṇya-phala',
+    puranas:[
+      {title:'Bhagavad Gītā 9.20-21',text:'Les pratiquants des rites védiques montent au ciel, jouissent de plaisirs divins, puis retombent à l\'épuisement de leur mérite.'},
+      {title:'Vishnu Purāṇa II.7',text:'Svarga comprend neuf sous-divisions depuis Dhruva jusqu\'au Soleil.'},
+      {title:'Bhāgavata Purāṇa 2.2.28',text:'Indra règne sur Svarga entouré des divinités védiques dans une splendeur sans égale.'},
+    ]
+  },
+  {
+    id:'bhuvar',number:'06',name:'Bhuvar-Loka',altName:'Bhuvarloka · Pitṛ-Loka',subtitle:'Sphère atmosphérique',
+    symbol:'☁️',tier:'bhuvar',region:'upper',sideText:'Transition',
+    theoPlane:'Plan Astral supérieur (4ème)',theoBadgeColor:'rgba(80,130,160,0.08)',
+    theoBadgeBorder:'rgba(80,130,160,0.3)',theoBadgeText:'#5590b0',
+    description:'Bhuvar-Loka occupe l\'espace entre la Terre et le Soleil. Zone de transition habité par des êtres semi-divins — yakshas, gandharvas, siddhas — et servant de passage aux âmes des défunts. Les Pitṛs (ancêtres) y demeurent sous la tutelle de Yama et Agniṣvātta.',
+    inhabitants:['Siddhas (parfaits)','Yakṣas, Gandharvas','Pitṛs (esprits ancestraux)','Agniṣvātta','Êtres astraux en transit'],
+    consciousness:'Conscience intermédiaire — plan astral de l\'existence post-mortem. Perception de l\'énergie vitale (prāṇa). Contemplation et jugement karmique.',
+    consciousnessLevel:55,consciousnessLabel:'Plan astral',
+    puranas:[
+      {title:'Vishnu Purāṇa II.7',text:'Bhuvarloka s\'étend entre la Terre et le Soleil, espace de Siddhas et d\'êtres subtils.'},
+      {title:'Bhāgavata Purāṇa 2.1.28',text:'Les Pitṛs y méditent sur le divin, attendant leur renaissance ou leur ascension.'},
+      {title:'Taittirīya Upaniṣad 1.5',text:'La seconde vyāhṛti "bhuvaḥ" désigne l\'espace atmosphérique, support de la vie prānique.'},
+    ]
+  },
+  {
+    id:'bhur',number:'07',name:'Bhūr-Loka',altName:'Bhu-Loka · Martya-Loka',subtitle:'La Terre — monde mortel',
+    symbol:'🌍',tier:'bhur',region:'earth',sideText:'Karma & action',
+    theoPlane:'Plan Physique dense (1er)',theoBadgeColor:'rgba(74,124,89,0.1)',
+    theoBadgeBorder:'rgba(74,124,89,0.4)',theoBadgeText:'#4a7c59',
+    description:'Bhūr-Loka est notre Terre — le plan physique de l\'existence humaine. Le Vishnu Purāṇa précise qu\'elle n\'est qu\'une parmi des milliards de mondes habitables. Décrite comme un disque plat (Bhū-maṇḍala) de 500 millions de yojanas, avec Vārāṇasī comme centre spirituel et le mont Meru comme axe cosmique.',
+    inhabitants:['Êtres humains','Animaux','Plantes','Nāgas et yakṣas','Divinités terrestres'],
+    consciousness:'Éveil ordinaire — conscience de veille (jāgrat) mêlée d\'ignorance (avidyā). Plan de l\'action karmique. La dualité sujet/objet est pleinement vécue. Chakra : Mūlādhāra.',
+    consciousnessLevel:45,consciousnessLabel:'Jāgrat',
+    puranas:[
+      {title:'Vishnu Purāṇa II.2',text:'La Terre est l\'une des billions de mondes habités dans l\'univers infini.'},
+      {title:'Bhāgavata Purāṇa 5.1-26',text:'Description de Bhū-maṇḍala, ses sept continents et ses sept océans.'},
+      {title:'Ṛgveda 10.90.14',text:'"Bhūr iti" — la Terre est le fondement, demeure des êtres mortels issus du Puruṣa cosmique.'},
+    ]
+  },
+  {
+    id:'atala',number:'08',name:'Atala',altName:'Atala-Loka',subtitle:'Premier plan souterrain',
+    symbol:'🌊',tier:'atala',region:'lower',sideText:'Désirs subtils',
+    theoPlane:'Plan Astral inférieur / Kāma-loka bas',theoBadgeColor:'rgba(42,157,143,0.08)',
+    theoBadgeBorder:'rgba(42,157,143,0.3)',theoBadgeText:'#2a9d8f',
+    description:'Atala est le premier des sept royaumes souterrains, dirigé par Bala, fils du démon Maya. Un simple bâillement de Bala crée trois types de femmes. Le Bhāgavata Purāṇa décrit Atala comme un "ciel souterrain" (bila-svarga) d\'une opulence surprenante.',
+    inhabitants:['Bala (fils de Maya)','Svairīṇī, Kāmiṇī, Puṃścalī','Esprits asuras','Dānavas et Daityas mineurs'],
+    consciousness:'Conscience des désirs subtils — attirance pour les plaisirs sensoriels décuplés. Début de la descente dans la matière dense.',
+    consciousnessLevel:35,consciousnessLabel:'Kāma subtil',
+    puranas:[
+      {title:'Bhāgavata Purāṇa 5.24.16',text:'Atala est dirigé par Bala, fils de Maya, dont un bâillement crée trois types de femmes mystérieuses.'},
+      {title:'Vishnu Purāṇa II.5',text:'Les sept Patalas s\'étendent à 70 000 yojanas sous la surface terrestre.'},
+    ]
+  },
+  {
+    id:'vitala',number:'09',name:'Vitala',altName:'Vitala-Loka',subtitle:'Demeure de Hara-Bhava',
+    symbol:'🔱',tier:'vitala',region:'lower',sideText:'Illusion dorée',
+    theoPlane:'Plan Astral dense / Māyā',theoBadgeColor:'rgba(200,100,50,0.08)',
+    theoBadgeBorder:'rgba(200,100,50,0.3)',theoBadgeText:'#c86432',
+    description:'Vitala est gouverné par Hara-Bhava, une forme de Shiva. La rivière Hātakī y coule — eau enflammée par le vent — et produit de l\'or Hātaka. Les habitants sont ornés de cet or mais déconnectés de la croissance spirituelle.',
+    inhabitants:['Hara-Bhava (Shiva)','Bhavānī','Gaṇas (serviteurs de Shiva)','Nāgas ornés d\'or Hātaka'],
+    consciousness:'Conscience de l\'illusion matérielle — succès apparent, ignorance totale de la réalité spirituelle. Déni des forces négatives.',
+    consciousnessLevel:28,consciousnessLabel:'Māyā dense',
+    puranas:[
+      {title:'Bhāgavata Purāṇa 5.24.17',text:'Vitala est gouverné par Hara-Bhava-Shiva, maître des mines d\'or Hātaka.'},
+      {title:'Vishnu Purāṇa II.5',text:'La rivière Hātakī produit l\'or le plus pur, dont se parent tous les habitants.'},
+    ]
+  },
+  {
+    id:'sutala',number:'10',name:'Sutala',altName:'Sutala-Loka',subtitle:'Royaume de Mahārāja Bali',
+    symbol:'👑',tier:'sutala',region:'lower',sideText:'Dévotion pure',
+    theoPlane:'Plan sub-physique 1 / Bhakti paradoxale',theoBadgeColor:'rgba(200,80,80,0.08)',
+    theoBadgeBorder:'rgba(200,80,80,0.3)',theoBadgeText:'#d05050',
+    description:'Sutala est construit par le divin architecte Viśvakarmā — le royaume de Mahārāja Bali, l\'asura vertueux. Après que Vāmana (avatar de Vishnu) l\'eut dépossédé des trois mondes, Bali offrit tout avec dévotion. Vishnu le récompensa avec Sutala, plus opulent que le ciel d\'Indra.',
+    inhabitants:['Mahārāja Bali','Vishnu (protecteur de Bali)','Asuras réformés','Famille royale de Bali'],
+    consciousness:'Conscience de la dévotion pure (bhakti) — paradoxe d\'un "démon" ayant atteint un niveau spirituel plus élevé que bien des dieux.',
+    consciousnessLevel:40,consciousnessLabel:'Bhakti paradoxale',
+    puranas:[
+      {title:'Bhāgavata Purāṇa 8.22',text:'Vishnu promet à Bali une protection permanente et un séjour en Sutala, plus riche qu\'Indraloka.'},
+      {title:'Vishnu Purāṇa',text:'Vāmana, après avoir couvert les trois mondes, envoie Bali en Sutala, bâti par Viśvakarmā.'},
+    ]
+  },
+  {
+    id:'talatala',number:'11',name:'Talātala',altName:'Talatala-Loka',subtitle:'Demeure de Maya',
+    symbol:'🌀',tier:'talatala',region:'lower',sideText:'Illusion / Māyā',
+    theoPlane:'Plan sub-physique 2 / Māyā totale',theoBadgeColor:'rgba(180,50,80,0.08)',
+    theoBadgeBorder:'rgba(180,50,80,0.3)',theoBadgeText:'#b43050',
+    description:'Talātala est le royaume de Maya Dānava, l\'architecte des démons. Maya construisit les trois cités volantes (Tripura) que Shiva détruisit. Impressionné par son génie, Shiva offrit Talātala à Maya et promit de le protéger.',
+    inhabitants:['Maya Dānava (architecte des démons)','Dānavas de rang élevé','Créateurs d\'illusions','Sorciers'],
+    consciousness:'Conscience de la māyā totale — réalité entièrement illusoire. Obstination intellectuelle et certitude figée.',
+    consciousnessLevel:22,consciousnessLabel:'Māyā totale',
+    puranas:[
+      {title:'Bhāgavata Purāṇa 5.24.19',text:'Talātala : domaine de Maya, protégé par Shiva après la destruction de Tripura.'},
+      {title:'Shiva Purāṇa',text:'Shiva détruit les trois cités de Maya mais lui offre Talātala comme consolation divine.'},
+    ]
+  },
+  {
+    id:'mahatala',number:'12',name:'Mahātala',altName:'Mahatala-Loka',subtitle:'Abode des Nāgas',
+    symbol:'🐍',tier:'mahatala',region:'lower',sideText:'Désirs incontrôlés',
+    theoPlane:'Plan sub-physique 3 / Krodha',theoBadgeColor:'rgba(155,35,80,0.08)',
+    theoBadgeBorder:'rgba(155,35,80,0.3)',theoBadgeText:'#9b2335',
+    description:'Mahātala est habité par les Nāgas à têtes multiples de la bande Krodhavaśa, menée par Kuhaka, Takṣaka, Kāliya et Suṣeṇa. Ils vivent en paix relative mais sous la terreur permanente de Garuḍa (l\'aigle divin de Vishnu).',
+    inhabitants:['Kuhaka, Takṣaka, Kāliya, Suṣeṇa','Nāgas du groupe Krodhavaśa','Serpents cosmiques ennemis de Garuḍa'],
+    consciousness:'Conscience des désirs incontrôlés — soumission totale aux pulsions instinctives. Peur viscérale (de Garuḍa). Cycle addiction/terreur.',
+    consciousnessLevel:16,consciousnessLabel:'Krodha',
+    puranas:[
+      {title:'Bhāgavata Purāṇa 5.24.20',text:'Mahātala abrite les Nāgas à capuchons multiples du groupe Krodhavaśa, vivant dans la terreur de Garuḍa.'},
+    ]
+  },
+  {
+    id:'rasatala',number:'13',name:'Rasātala',altName:'Rasatala-Loka',subtitle:'Demeure des Dānavas',
+    symbol:'⚔️',tier:'rasatala',region:'lower',sideText:'Hostilité cosmique',
+    theoPlane:'Plan sub-physique 4 / Dveṣa',theoBadgeColor:'rgba(130,20,50,0.08)',
+    theoBadgeBorder:'rgba(130,20,50,0.3)',theoBadgeText:'#822020',
+    description:'Rasātala est le domaine des Dānavas et Daityas — archétypes ennemis des Devas. Puissants mais cruels, ils vivent comme des serpents dans des terriers, planifiant sans cesse la guerre contre les dieux.',
+    inhabitants:['Dānavas (fils de Danu)','Daityas (fils de Diti)','Ennemis éternels des Devas'],
+    consciousness:'Conscience d\'hostilité et jalousie — définition de soi par opposition à l\'autre. Animosité chronique envers tout ce qui est élevé.',
+    consciousnessLevel:10,consciousnessLabel:'Dveṣa',
+    puranas:[
+      {title:'Bhāgavata Purāṇa 5.24.21',text:'Rasātala : Dānavas et Daityas — forts mais cruels, ennemis perpétuels des Devas.'},
+      {title:'Mahābhārata, Ādi Parva',text:'L\'origine des Daityas remonte à Diti, qui enfanta pour rivaliser avec les fils de Kaśyapa.'},
+    ]
+  },
+  {
+    id:'patala',number:'14',name:'Pātāla',altName:'Nāga-Loka · Pātāla-Loka',subtitle:'L\'abîme le plus profond',
+    symbol:'🌑',tier:'patala',region:'lower',sideText:'Tamas & renaissance',
+    theoPlane:'Plan sub-physique 5 / Tamas absolu',theoBadgeColor:'rgba(100,10,30,0.1)',
+    theoBadgeBorder:'rgba(255,100,128,0.3)',theoBadgeText:'#ff6680',
+    description:'Pātāla est le royaume le plus profond, gouverné par Vāsuki, le roi des Nāgas — le serpent qui entoure le cou de Shiva. Ironie cosmique : les joyaux ornant les capuchons des Nāgas illuminent ce royaume de ténèbres. Le Vishnu Purāṇa le décrit comme plus beau que Svarga, rempli de jardins splendides et de lacs. En dessous de Pātāla se trouve Naraka (l\'enfer), distinct de Pātāla. C\'est Śeṣa Nāga (Ananta), aux mille têtes, qui soutient la Terre entière depuis en-dessous de Pātāla.',
+    inhabitants:['Vāsuki (roi des Nāgas)','Nāgas à capuchons lumineux','Ananta/Śeṣa (soutien de la Terre)','Gardiens du potentiel de renaissance'],
+    consciousness:'Conscience la plus basse — hostilité et colère à leur paroxysme. Pourtant, le joyau sur la tête de Vāsuki symbolise la connaissance potentielle et la possibilité de s\'élever. L\'abîme le plus profond contient la graine de la renaissance.',
+    consciousnessLevel:4,consciousnessLabel:'Tamas pur',
+    puranas:[
+      {title:'Bhāgavata Purāṇa 5.24.31',text:'Pātāla gouverné par Vāsuki ; ses habitants aux capuchons décorés de joyaux illuminent l\'obscurité absolue.'},
+      {title:'Vishnu Purāṇa II.5',text:'Narada visite Pātāla et le décrit comme plus beau que Svarga.'},
+      {title:'Brahmāṇḍa Purāṇa',text:'En dessous de Pātāla réside Śeṣa Nāga (Ananta), dont les mille têtes supportent la Terre entière.'},
+    ]
+  },
+];
+
+// Build lookup
+const LOKAS_MAP = {};
+LOKAS.forEach(l => LOKAS_MAP[l.id] = l);
+
+// ===== RENDER DIAGRAM =====
+function getConsciousnessColor(level) {
+  if (level >= 100) return 'linear-gradient(90deg,#fff7cc,#ffd700)';
+  if (level >= 80) return 'linear-gradient(90deg,#ffd700,#d4b8ff)';
+  if (level >= 60) return 'linear-gradient(90deg,#b07aff,#8060dd)';
+  if (level >= 45) return 'linear-gradient(90deg,#4a7c59,#2a9d8f)';
+  if (level >= 30) return 'linear-gradient(90deg,#2a9d8f,#c86432)';
+  if (level >= 15) return 'linear-gradient(90deg,#c86432,#9b2335)';
+  return 'linear-gradient(90deg,#9b2335,#1a0010)';
+}
+
+function renderDiagram() {
+  const container = document.getElementById('lokas-list');
+  container.innerHTML = '';
+  // Skip index 0 (vaikuntha) — displayed separately
+  LOKAS.slice(1).forEach((loka, idx) => {
+    if (idx === 0) container.appendChild(makeSectionLabel('↑ Sept Lokas Supérieurs — Vyahritis','upper'));
+    if (idx === 6) container.appendChild(makeSectionLabel('◉ La Terre — Carrefour du Karma','earth-label'));
+    if (idx === 7) container.appendChild(makeSectionLabel('↓ Sept Patalas — Mondes Souterrains','lower'));
+
+    const row = document.createElement('div');
+    row.className = 'loka-row';
+
+    const leftSide = document.createElement('div');
+    leftSide.className = 'loka-side left';
+    leftSide.innerHTML = `<div class="side-info">${loka.sideText}</div><div class="connector"></div>`;
+
+    const card = document.createElement('button');
+    card.className = 'loka-card';
+    card.setAttribute('data-tier', loka.tier);
+    card.setAttribute('data-id', loka.id);
+    card.setAttribute('aria-label', `Ouvrir les détails de ${loka.name}`);
+    card.innerHTML = `<div class="loka-symbol">${loka.symbol}</div>
+      <div class="loka-number">Niveau ${loka.number}</div>
+      <div class="loka-name">${loka.name}</div>
+      <div class="loka-subtitle">${loka.subtitle}</div>`;
+    card.addEventListener('click', () => openDetail(loka));
+
+    const rightSide = document.createElement('div');
+    rightSide.className = 'loka-side right';
+    rightSide.innerHTML = `<div class="connector"></div><div class="side-info">${loka.altName}</div>`;
+
+    row.appendChild(leftSide); row.appendChild(card); row.appendChild(rightSide);
+    container.appendChild(row);
+  });
+}
+
+function makeSectionLabel(text, cls) {
+  const el = document.createElement('div');
+  el.className = `section-label ${cls}`;
+  el.innerHTML = `<div class="section-label-line"></div><div class="section-label-text">${text}</div><div class="section-label-line"></div>`;
+  return el;
+}
+
+// ===== DETAIL PANEL =====
+let currentActive = null;
+
+function openDetailById(id) {
+  const loka = LOKAS_MAP[id];
+  if (loka) openDetail(loka);
+}
+
+function openDetail(loka) {
+  if (currentActive) currentActive.classList.remove('active');
+  const card = document.querySelector(`[data-id="${loka.id}"]`);
+  if (card) { card.classList.add('active'); currentActive = card; }
+
+  const overlay = document.getElementById('detail-overlay');
+  const panel = document.getElementById('detail-panel');
+
+  const isVaikuntha = loka.id === 'vaikuntha';
+  document.getElementById('detail-num').textContent = isVaikuntha ? 'Au-delà des 14 Lokas · Plan transcendant' : `Loka ${loka.number} / 14`;
+  document.getElementById('detail-name').textContent = loka.name;
+  document.getElementById('detail-alt').textContent = loka.altName;
+  document.getElementById('detail-symbol').textContent = loka.symbol;
+  document.getElementById('detail-desc').textContent = loka.description;
+
+  // Inhabitants
+  const inhabEl = document.getElementById('detail-inhabitants');
+  inhabEl.innerHTML = loka.inhabitants.map(i => `<span class="tag">${i}</span>`).join('');
+
+  // Consciousness
+  document.getElementById('detail-consciousness').textContent = loka.consciousness;
+  const bar = document.getElementById('detail-consciousness-bar');
+  bar.style.background = getConsciousnessColor(loka.consciousnessLevel);
+  bar.style.width = '0%';
+  setTimeout(() => { bar.style.width = Math.min(loka.consciousnessLevel, 100) + '%'; }, 80);
+  document.getElementById('detail-consciousness-label').textContent = loka.consciousnessLabel;
+
+  // Theosophical
+  const theoSection = document.getElementById('detail-theo-section');
+  const theoContent = document.getElementById('detail-theo-content');
+  if (loka.theoPlane) {
+    theoSection.style.display = 'flex';
+    theoContent.innerHTML = `<span class="theo-badge" style="background:${loka.theoBadgeColor};border-color:${loka.theoBadgeBorder};color:${loka.theoBadgeText}">${loka.theoPlane}</span>`;
+  } else {
+    theoSection.style.display = 'none';
+  }
+
+  // Puranas
+  const puranasEl = document.getElementById('detail-puranas');
+  puranasEl.innerHTML = loka.puranas.map(p =>
+    `<div class="purana-ref"><span class="purana-ref-title">${p.title}</span><span class="purana-ref-text">${p.text}</span></div>`
+  ).join('');
+
+  panel.setAttribute('data-tier', loka.tier);
+  overlay.classList.add('open');
+  document.body.style.overflow = 'hidden';
+  setTimeout(() => document.getElementById('detail-close').focus(), 100);
+}
+
+function closeDetail() {
+  document.getElementById('detail-overlay').classList.remove('open');
+  document.body.style.overflow = '';
+  if (currentActive) { currentActive.classList.remove('active'); currentActive = null; }
+}
+
+// ===== TABS =====
+function initTabs() {
+  document.querySelectorAll('.tab-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const tabId = btn.dataset.tab;
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById('tab-' + tabId).classList.add('active');
+    });
+  });
+}
+
+// ===== VAIKUNTHA BUTTON =====
+document.getElementById('vaikuntha-btn').addEventListener('click', () => {
+  openDetail(LOKAS_MAP['vaikuntha']);
+});
+
+// ===== STARFIELD =====
+function createStarfield() {
+  const sf = document.getElementById('starfield');
+  for (let i = 0; i < 120; i++) {
+    const star = document.createElement('div');
+    star.className = 'star';
+    star.style.cssText = `left:${Math.random()*100}%;top:${Math.random()*100}%;
+      opacity:${Math.random()*.5+.1};
+      width:${Math.random()<.85?1:2}px;height:${Math.random()<.85?1:2}px;
+      --dur:${(Math.random()*4+2).toFixed(1)}s;--delay:${(Math.random()*5).toFixed(1)}s`;
+    sf.appendChild(star);
+  }
+}
+
+// ===== THEME TOGGLE =====
+function initTheme() {
+  const toggle = document.querySelector('[data-theme-toggle]');
+  const html = document.documentElement;
+  let theme = 'dark';
+  html.setAttribute('data-theme', theme);
+  updateToggleIcon(toggle, theme);
+  toggle.addEventListener('click', () => {
+    theme = theme === 'dark' ? 'light' : 'dark';
+    html.setAttribute('data-theme', theme);
+    updateToggleIcon(toggle, theme);
+  });
+}
+function updateToggleIcon(btn, theme) {
+  if (theme === 'dark') {
+    btn.innerHTML = `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>`;
+    btn.setAttribute('aria-label','Passer en mode clair');
+  } else {
+    btn.innerHTML = `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>`;
+    btn.setAttribute('aria-label','Passer en mode sombre');
+  }
+}
+
+// ===== EVENTS =====
+document.getElementById('detail-close').addEventListener('click', closeDetail);
+document.getElementById('detail-overlay').addEventListener('click', e => { if (e.target === e.currentTarget) closeDetail(); });
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeDetail(); });
+
+// ===== INIT =====
+renderDiagram();
+createStarfield();
+initTheme();
+initTabs();
+</script>
+</body>
+</html>
